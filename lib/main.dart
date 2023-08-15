@@ -1,5 +1,6 @@
 import 'package:acounting_max/views/screens/dashboard/dashboardScreen.dart';
 // import 'package:acounting_max/views/screens/vendor/vendorScreen.dart';
+import 'package:acounting_max/views/screens/item1/itemScreeen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,5 +19,8 @@ class MyApp extends StatelessWidget {
       
       );
 
+    // return MaterialApp(
+    // home: itemScreenWidget(),
+    // );
   }
 }
