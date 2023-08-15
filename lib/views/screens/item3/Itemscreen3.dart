@@ -20,8 +20,8 @@ class _ItemScreen3State extends State<ItemScreen3> {
         body: SingleChildScrollView(
             child: Column(
           children: [
-            CommunicationFileSelectionButton(),
-            const CommunicationButton(),
+            comunicationFileSelectionButton(),
+             CommunicationButton(),
           ],
         )));
   }

@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 
-class VenderDropDown extends StatefulWidget {
-
-  const VenderDropDown({super.key});
+class SaleDropdown extends StatefulWidget {
+  const SaleDropdown({super.key});
 
   @override
-  State<VenderDropDown> createState() => _VenderDropDownState();
+  State<SaleDropdown> createState() => _SaleDropdownState();
 }
 
-class _VenderDropDownState extends State<VenderDropDown> {
-  String selectedOption = 'Vendor1'; // Set the initial selected option
-
+class _SaleDropdownState extends State<SaleDropdown> {
+  String selectedOption = 'Avarage'; // Set the initial selected option
+  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,7 +19,7 @@ class _VenderDropDownState extends State<VenderDropDown> {
           child: const Row(
             children: [
               Text(
-                "Preferred Vendor",
+                "Sales Costing Method",
                 style: TextStyle(
                   fontSize: 18, // Set the font size here
                 ),
@@ -39,10 +38,7 @@ class _VenderDropDownState extends State<VenderDropDown> {
                   selectedOption = newValue!;
                 });
               },
-              items: <String>[
-                'Vendor1', // Add 'Vendor1' as a new option
-                'Vendor Name', // Keep the existing 'Vendor Name' option
-              ].map((String value) {
+              items: <String>['Avarage', 'FIFO'].map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),

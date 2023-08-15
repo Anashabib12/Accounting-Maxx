@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 
-class Item2AppBar extends StatefulWidget {
-  const Item2AppBar({super.key});
+class SaleAppBar extends StatefulWidget {
+  const SaleAppBar({super.key});
 
   @override
-  State<Item2AppBar> createState() => _Item2AppBarState();
+  State<SaleAppBar> createState() => _SaleAppBarState();
 }
 
-class _Item2AppBarState extends State<Item2AppBar> {
+class _SaleAppBarState extends State<SaleAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
       // leading: Icon(Icons.arrow_back),
-      title: const Text('  Accounts'),
+      title: const Text('  sales'),
       // name: Text('My App'),
-      backgroundColor: Color.fromARGB(205, 203, 238,
-          239), // Change this color to customize the app bar background color
-           actions: [
+      backgroundColor: Color.fromARGB(205, 203, 238, 239),
+       actions: [
              IconButton(
             icon: const Icon(Icons.save),
             tooltip: 'Comment Icon',

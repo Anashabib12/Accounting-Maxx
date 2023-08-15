@@ -23,6 +23,7 @@ class _InventoryButtonWidgetsState extends State<InventoryButtonWidgets> {
 
         // },
         child: Row(
+          verticalDirection: VerticalDirection.down,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const Icon(Icons.add_circle_outline),

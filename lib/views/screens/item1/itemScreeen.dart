@@ -1,3 +1,4 @@
+import 'package:acounting_max/views/screens/SystemInfo/Systeminfo.dart';
 import 'package:acounting_max/views/screens/item1/widgets/appBar.dart';
 import 'package:acounting_max/views/screens/item1/widgets/itemButton.dart';
 import 'package:acounting_max/views/screens/item1/widgets/itemRadio.dart';
@@ -10,6 +11,7 @@ import 'package:acounting_max/views/screens/item3/Itemscreen3.dart';
 import 'package:flutter/material.dart';
 
 import '../itemInventory/itemInventoryScreen.dart';
+import '../sale/saleScreen.dart';
 
 class itemScreenWidget extends StatefulWidget {
   const itemScreenWidget({super.key});
@@ -22,7 +24,7 @@ class _itemScreenWidgetState extends State<itemScreenWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: PreferredSize(
+        appBar:const PreferredSize(
             preferredSize: Size.fromHeight(65),
             child: const AppBarwidgets()), // this is the app bar
         body: SingleChildScrollView(
@@ -41,30 +43,48 @@ class _itemScreenWidgetState extends State<itemScreenWidget> {
               ItemButtonWidgets(
                 name: "Accounts",
                 pressFunction: () => {
-                  
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const itemScreen2()),
+                    MaterialPageRoute(
+                        builder: (context) => const itemScreen2()),
                   )
                 },
               ),
               ItemButtonWidgets(
                 name: "Communications",
                 pressFunction: () => {
-                  
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const ItemScreen3()),
+                    MaterialPageRoute(
+                        builder: (context) => const ItemScreen3()),
                   )
                 },
               ),
               ItemButtonWidgets(
-                name: "Invnetory Syaytem",
+                name: "Purchase",
                 pressFunction: () => {
-                  
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const ItemINventoryScreen()),
+                    MaterialPageRoute(
+                        builder: (context) => const ItemINventoryScreen()),
+                  )
+                },
+              ),
+              ItemButtonWidgets(
+                name: "Sales",
+                pressFunction: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SaleScreen()),
+                  )
+                },
+              ),
+              ItemButtonWidgets(
+                name: "System Information",
+                pressFunction: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SystemInfo()),
                   )
                 },
               ),

@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/services.dart';
 
 class itemFormWidget extends StatefulWidget {
   const itemFormWidget({super.key});
@@ -39,6 +37,10 @@ class _itemFormWidgetState extends State<itemFormWidget> {
               ),
             ),
             TextFormField(
+              keyboardType: TextInputType.phone,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+              ],
               decoration: const InputDecoration(
                 // icon: const Icon(Icons.phone),
                 hintText: ' Purchase Price',

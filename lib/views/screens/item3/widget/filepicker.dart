@@ -1,14 +1,87 @@
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
+
+class comunicationFileSelectionButton extends StatefulWidget {
+  @override
+  _comunicationFileSelectionButtonState createState() =>
+      _comunicationFileSelectionButtonState();
+}
+
+class _comunicationFileSelectionButtonState
+    extends State<comunicationFileSelectionButton> {
+  String? _filePath; // To store the selected file name
+
+  Future<void> _selectFile() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+    if (result != null) {
+      setState(() {
+        String fullPath = result.files.single.path!;
+        // Get the file name from the full path
+        String fileName = fullPath.split('/').last;
+        _filePath = fileName;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(left: 20, top: 20),
+      child: Align(
+        
+        alignment: Alignment.centerLeft,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ElevatedButton(
+              onPressed: _selectFile,
+              child: Text('Select File'),
+            ),
+            SizedBox(height: 16),
+            if (_filePath != null)
+              Row(
+                children: [
+                  CircleAvatar(
+                    backgroundColor: Color.fromARGB(255, 139, 198, 225),
+                    radius: 20,
+                    backgroundImage: NetworkImage(
+                        'https://corekarachi.pk/wp-content/uploads/2019/05/member.png'),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 10),
+                    child: Text(
+                      
+                      '$_filePath',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                ],
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+
+// this file is perfect
 // import 'package:flutter/material.dart';
 // import 'package:file_picker/file_picker.dart';
+// // import 'package:file_picker/file_picker.dart';
 
-// class comunicationFileSelectionButton extends StatefulWidget {
+// class CommunicationFileSelectionButton extends StatefulWidget {
 //   @override
-//   _comunicationFileSelectionButtonState createState() =>
-//       _comunicationFileSelectionButtonState();
+//   _CommunicationFileSelectionButtonState createState() =>
+//       _CommunicationFileSelectionButtonState();
 // }
 
-// class _comunicationFileSelectionButtonState
-//     extends State<comunicationFileSelectionButton> {
+// class _CommunicationFileSelectionButtonState
+//     extends State<CommunicationFileSelectionButton> {
 //   String? _filePath; // To store the selected file name
 
 //   Future<void> _selectFile() async {
@@ -21,6 +94,29 @@
 //         String fileName = fullPath.split('/').last;
 //         _filePath = fileName;
 //       });
+//     }
+//   }
+
+//   Future<void> _showSelectedFile() async {
+//     if (_filePath != null) {
+//       // Show the selected file in a dialog popup
+//       await showDialog(
+//         context: context,
+//         builder: (BuildContext context) {
+//           return AlertDialog(
+//             title: Text('Selected File'),
+//             content: Text('$_filePath'),
+//             actions: [
+//               TextButton(
+//                 onPressed: () {
+//                   Navigator.of(context).pop();
+//                 },
+//                 child: Text('Close'),
+//               ),
+//             ],
+//           );
+//         },
+//       );
 //     }
 //   }
 
@@ -37,96 +133,15 @@
 //           ),
 //           SizedBox(height: 16),
 //           if (_filePath != null)
-//                 Text(
-//                   'Selected File: $_filePath',
-//                   style: TextStyle(fontSize: 16),
-//                 ),
-              
-            
+//             ElevatedButton(
+//               onPressed: _showSelectedFile,
+//               child: Text('Show Selected File'),
+//             ),
 //         ],
 //       ),
 //     );
 //   }
 // }
-
-
-
-
-
-
-
-import 'package:flutter/material.dart';
-import 'package:file_picker/file_picker.dart';
-// import 'package:file_picker/file_picker.dart';
-
-class CommunicationFileSelectionButton extends StatefulWidget {
-  @override
-  _CommunicationFileSelectionButtonState createState() =>
-      _CommunicationFileSelectionButtonState();
-}
-
-class _CommunicationFileSelectionButtonState
-    extends State<CommunicationFileSelectionButton> {
-  String? _filePath; // To store the selected file name
-
-  Future<void> _selectFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
-
-    if (result != null) {
-      setState(() {
-        String fullPath = result.files.single.path!;
-        // Get the file name from the full path
-        String fileName = fullPath.split('/').last;
-        _filePath = fileName;
-      });
-    }
-  }
-
-  Future<void> _showSelectedFile() async {
-    if (_filePath != null) {
-      // Show the selected file in a dialog popup
-      await showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Selected File'),
-            content: Text('$_filePath'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('Close'),
-              ),
-            ],
-          );
-        },
-      );
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.centerLeft,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ElevatedButton(
-            onPressed: _selectFile,
-            child: Text('Select File'),
-          ),
-          SizedBox(height: 16),
-          if (_filePath != null)
-            ElevatedButton(
-              onPressed: _showSelectedFile,
-              child: Text('Show Selected File'),
-            ),
-        ],
-      ),
-    );
-  }
-}
 
 
 

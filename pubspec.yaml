@@ -39,6 +39,8 @@ dependencies:
   file_picker: ^5.3.3
   open_file: ^3.3.2
   image_picker: ^1.0.2
+  app_install_date: ^0.1.2
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
