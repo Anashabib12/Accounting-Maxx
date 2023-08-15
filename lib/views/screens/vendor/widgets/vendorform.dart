@@ -1,4 +1,5 @@
 import 'package:acounting_max/views/screens/contactPerson/contactPersonScreen.dart';
+import 'package:acounting_max/views/screens/dashboard/dashboardScreen.dart';
 import 'package:acounting_max/views/screens/vendor/widgets/otherdetails.dart';
 import 'package:acounting_max/views/screens/vendor/widgets/vendorButton.dart';
 import 'package:acounting_max/views/screens/vendorAddBilling/vendorAddBillingScreen.dart';
@@ -204,6 +205,14 @@ class _VendorFormState extends State<VendorForm> {
                       MaterialPageRoute(
                           builder: (context) => const vendorAddBillingScreen()))
                 }),
+            //     vendorButton(
+            // name: 'dashboard',
+            // vendorPressFunction: () => {
+            //       Navigator.push(
+            //           context,
+            //           MaterialPageRoute(
+            //               builder: (context) => const dashBoard()))
+            //     }),
       ],
     );
   }
