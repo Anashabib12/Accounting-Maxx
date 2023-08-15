@@ -1,3 +1,6 @@
+
+// import 'package:acounting_max/views/screens/customerPage/customer-screen.dart';
+
 import 'package:acounting_max/views/screens/dashboard/dashboardScreen.dart';
 // import 'package:acounting_max/views/screens/vendor/vendorScreen.dart';
 import 'package:acounting_max/views/screens/item1/itemScreeen.dart';
@@ -14,7 +17,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      // home: CustomerScreenWidget(),
       home:dashBoard() ,
+    );
       
       
       );
