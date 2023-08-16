@@ -1,5 +1,7 @@
+import 'package:acounting_max/views/screens/SystemInfo/Systeminfo.dart';
 import 'package:acounting_max/views/screens/contactPerson/contactPersonScreen.dart';
 import 'package:acounting_max/views/screens/dashboard/dashboardScreen.dart';
+import 'package:acounting_max/views/screens/item3/Itemscreen3.dart';
 import 'package:acounting_max/views/screens/vendor/widgets/otherdetails.dart';
 import 'package:acounting_max/views/screens/vendor/widgets/vendorButton.dart';
 import 'package:acounting_max/views/screens/vendorAddBilling/vendorAddBillingScreen.dart';
@@ -203,7 +205,15 @@ class _VendorFormState extends State<VendorForm> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const vendorAddBillingScreen()))
+                          builder: (context) => const ItemScreen3()))
+                }),
+                vendorButton(
+            name: 'System Information',
+            vendorPressFunction: () => {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SystemInfo()))
                 }),
             //     vendorButton(
             // name: 'dashboard',

@@ -13,7 +13,7 @@ class _SystemAppBarState extends State<SystemAppBar> {
     return AppBar(
         // leading: Icon(Icons.arrow_back),
         title: const Text("System Information"),
-        backgroundColor: Color.fromARGB(205, 203, 238, 239),
+        backgroundColor: const Color(0xFF50C2C9),
         actions: [
         TextButton(
           onPressed: () {

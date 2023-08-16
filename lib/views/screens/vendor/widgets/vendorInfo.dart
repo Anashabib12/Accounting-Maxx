@@ -26,7 +26,7 @@ class _vendorInfoState extends State<vendorInfo> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Vendor information',
+              'Vendor Information',
               style: TextStyle(
                 fontSize: MediaQuery.of(context).size.width * 0.06,
                 fontWeight: FontWeight.bold,
