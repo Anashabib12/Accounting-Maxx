@@ -14,7 +14,7 @@ class _CustomerBillingappbarWidgetState extends State<CustomerBillingAppbar> {
       child: AppBar(
       
         title: const Text ('Billing Address'),
-        backgroundColor: const Color.fromARGB(205, 5, 136, 141)
+        backgroundColor: const Color(0xFF50C2C9),
     
       ),
     );

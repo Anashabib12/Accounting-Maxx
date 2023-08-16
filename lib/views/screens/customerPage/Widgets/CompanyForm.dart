@@ -1,3 +1,5 @@
+import 'package:acounting_max/views/screens/SystemInfo/Systeminfo.dart';
+import 'package:acounting_max/views/screens/item3/Itemscreen3.dart';
 import 'package:flutter/material.dart';
 
 import 'package:acounting_max/views/screens/Billingpage/BillingScreen.dart';
@@ -222,7 +224,17 @@ class _CompanyFormState extends State<CompanyForm> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const BillingScreen()))
+                            builder: (context) => const ItemScreen3()))
+                  },
+                ),
+                CompanyButton(
+                  backgroundColor: Colors.transparent,
+                  name: 'System Information',
+                  CompanyPressFunction: () => {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SystemInfo()))
                   },
                 )
               ]

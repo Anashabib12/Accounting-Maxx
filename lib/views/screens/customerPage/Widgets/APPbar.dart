@@ -11,23 +11,23 @@ class _AppbarWidgetState extends State<AppbarWidget> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: const Icon(Icons.arrow_back),
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
       title: const Text('New Customer'),
-      backgroundColor: const Color.fromARGB(205, 5, 136, 141),
+      backgroundColor: const Color(0xFF50C2C9),
       actions: [
-        TextButton(
-          onPressed: () {
-            // Implement your save functionality here
-          },
-          child: const Text(
-            'Save',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16,
-            ),
-          ),
-        ),
-      ],
+          IconButton(
+            icon: const Icon(Icons.save),
+            onPressed: (){
+
+            } ,
+          ) 
+            
+        ],
     );
   }
 }

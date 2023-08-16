@@ -8,7 +8,7 @@ class ShippingAppbar extends StatelessWidget {
     return  SafeArea(
       child: AppBar(
         title: const Text ('Shipping Address'),
-        backgroundColor: const Color.fromARGB(205, 5, 136, 141)
+        backgroundColor: const Color(0xFF50C2C9),
     
       ),
     );

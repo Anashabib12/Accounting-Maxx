@@ -1,5 +1,7 @@
+import 'package:acounting_max/views/screens/customerPage/customer-screen.dart';
 import 'package:acounting_max/views/screens/dashboard/widgets/DBAppBar.dart';
 import 'package:acounting_max/views/screens/dashboard/widgets/body.dart';
+import 'package:acounting_max/views/screens/item1/itemScreeen.dart';
 import 'package:acounting_max/views/screens/vendor/vendorScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -22,17 +24,34 @@ class _dashBoardState extends State<dashBoard> {
         // child: BillingForm()
         child: Column(
           children: [
-             dashboardBody(
-            name: 'New Vendor',
-            dashboardPressFunction: () => {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const VendorScreenState()))
-                }),
+            dashboardBody(
+                name: 'New Vendor',
+                dashboardPressFunction: () => {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const VendorScreenState()))
+                    }),
+            dashboardBody(
+                name: 'New Item',
+                dashboardPressFunction: () => {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const itemScreenWidget()))
+                    }),
+            dashboardBody(
+                name: 'New customer',
+                dashboardPressFunction: () => {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const CustomerScreenWidget()))
+                    }),
           ],
         ),
-        ),
+      ),
     );
   }
 }

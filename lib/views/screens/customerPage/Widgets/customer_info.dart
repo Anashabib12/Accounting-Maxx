@@ -11,31 +11,40 @@ class _CustomerCompanyState extends State<CustomerCompany> {
   String SelectOption = "option1";
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          margin: const EdgeInsets.only(top: 20 , right: 135),
-              child: const Text(
-                'Customer Information',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                  
-                ),
-              ),
+    return  Container(
+      alignment: AlignmentDirectional.centerStart,
+      child: Padding(
+        
+        padding: EdgeInsets.symmetric(
+          vertical: MediaQuery.of(context).size.height * 0.03,
+          horizontal: MediaQuery.of(context).size.width * 0.05,
         ),
-        Container(
-          margin: const EdgeInsets.only(top: 20,right: 200),
-              child: const Text(
-                'Customer Type',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Color.fromARGB(255, 7, 231, 223),
-                  
-                ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Customer Information',
+              style: TextStyle(
+                fontSize: MediaQuery.of(context).size.width * 0.06,
+                fontWeight: FontWeight.bold,
+                // decoration: TextDecoration.underline
               ),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+            Text(
+              'Customer Type',
+              style: TextStyle(
+                fontSize: MediaQuery.of(context).size.width * 0.06,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xFF50C2C9),
+              ),
+            ),
+            
+            // Add more widgets here if needed.
+          ],
         ),
-      ]);
+      ),
+    );
   }
 }
         

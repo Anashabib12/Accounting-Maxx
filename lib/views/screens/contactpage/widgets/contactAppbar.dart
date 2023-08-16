@@ -10,7 +10,7 @@ class contactAppbar extends StatelessWidget {
          
 
         title: const Text ('Contact Person'),
-        backgroundColor: const Color.fromARGB(205, 5, 136, 141)
+        backgroundColor: const Color(0xFF50C2C9),
     
       ),
     );
