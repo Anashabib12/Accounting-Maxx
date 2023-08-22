@@ -1,4 +1,6 @@
+import 'package:acounting_max/Provider/PerchaseFormData.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ItemTextereaWidgets extends StatefulWidget {
   const ItemTextereaWidgets({Key? key}) : super(key: key);
@@ -41,6 +43,7 @@ class _ItemTextereaWidgetsState extends State<ItemTextereaWidgets> {
                 onChanged: (value) {
                   setState(() {
                     _textValue = value;
+                    context.read<ItemForm3Provider>().updatePurchaseDescription(value);
                   });
                 },
               ),

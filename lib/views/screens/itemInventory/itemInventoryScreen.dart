@@ -5,7 +5,7 @@ import 'package:acounting_max/views/screens/itemInventory/widget/inventoryButton
 import 'package:acounting_max/views/screens/itemInventory/widget/inventoryDropdown.dart';
 import 'package:acounting_max/views/screens/itemInventory/widget/itemLocation.dart';
 import 'package:acounting_max/views/screens/itemInventory/widget/itemTexterea.dart';
-import 'package:acounting_max/views/screens/itemInventory/widget/venderdropdown.dart';
+import 'package:acounting_max/views/screens/itemInventory/widget/Costingdropdown.dart';
 import 'package:flutter/material.dart';
 
 class ItemINventoryScreen extends StatefulWidget {
@@ -26,6 +26,10 @@ class _ItemINventoryScreenState extends State<ItemINventoryScreen> {
       body: SingleChildScrollView(
           child: Column(
         children: [
+
+          Container(
+            child: const CostingDropdown(),
+          ),
           Container(
             child: InventoryDropdown(),
           ),

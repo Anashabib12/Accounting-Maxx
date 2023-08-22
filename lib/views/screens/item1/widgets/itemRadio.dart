@@ -1,4 +1,6 @@
+import 'package:acounting_max/Provider/ItemFormDataProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class itemRadioWidgets extends StatefulWidget {
   const itemRadioWidgets({super.key});
@@ -23,6 +25,7 @@ class _itemRadioWidgetsState extends State<itemRadioWidgets> {
               onChanged: (value) {
                 setState(() {
                   selectedOption = value.toString();
+                   context.read<ItemFormProvider>().updateSelectedStatus(value.toString());
                 });
               },
             ),
@@ -35,6 +38,7 @@ class _itemRadioWidgetsState extends State<itemRadioWidgets> {
               onChanged: (value) {
                 setState(() {
                   selectedOption = value.toString();
+                   context.read<ItemFormProvider>().updateSelectedStatus(value.toString());
                 });
               },
             ),
