@@ -1,5 +1,7 @@
+import 'package:acounting_max/Provider/SalesFormDataProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class SalePrice extends StatefulWidget {
   const SalePrice({super.key});
@@ -13,8 +15,8 @@ class _SalePriceState extends State<SalePrice> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-          Container(
-          margin: EdgeInsets.only(top: 20.0, left: 15,bottom: 15),
+        Container(
+          margin: EdgeInsets.only(top: 20.0, left: 15, bottom: 15),
           child: const Row(
             children: [
               Text(
@@ -38,6 +40,9 @@ class _SalePriceState extends State<SalePrice> {
               hintText: ' Sales Price',
               labelText: 'Sales Price',
             ),
+            onChanged: (value) {
+              context.read<SalesDataProvider>().updateSalesPrice(int.parse(value));
+            },
           ),
         ),
       ],

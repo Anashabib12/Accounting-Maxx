@@ -1,4 +1,7 @@
+import 'package:acounting_max/Provider/SalesFormDataProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class SaleQtyPrice extends StatefulWidget {
   const SaleQtyPrice({super.key});
@@ -43,10 +46,13 @@ class _SaleQtyPriceState extends State<SaleQtyPrice> {
                   child: TextFormField(
                       decoration:const InputDecoration(
                     hintText:"Base Price",
-                      )
+                      ),
                     // style: TextStyle(
                     //   fontSize: 18, // Set the font size here
                     // ),
+                      onChanged: (value) {
+                        context.read<SalesDataProvider>().updateBasePrice(value);
+                      },
                   ),
                 ),
               ],
@@ -62,21 +68,38 @@ class _SaleQtyPriceState extends State<SaleQtyPrice> {
                   // margin: EdgeInsets.only(top: 20),
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: TextFormField(
+                    keyboardType: TextInputType.phone,
+                      inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                        ],
                       decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'Add Qty: min-10',
                     // labelText: 'Income Account',
-                  )),
+                  ),
+                  onChanged: (value) {
+                        context.read<SalesDataProvider>().updateAddQty10(value);
+                  },
+                  
+                  ),
                 ),
                 Container(
                   // margin: EdgeInsets.only(top: 20),
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: TextFormField(
+                          keyboardType: TextInputType.phone,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
                       decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'Discount Price',
                     // labelText: 'Income Account',
-                  )),
+                  ),
+                  onChanged: (value){
+                        context.read<SalesDataProvider>().updateDiscountPrice10(value);
+                  },
+                  ),
                 ),
               ],
             ),
@@ -93,21 +116,37 @@ class _SaleQtyPriceState extends State<SaleQtyPrice> {
                   // margin: EdgeInsets.only(top: 20),
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: TextFormField(
+                          keyboardType: TextInputType.phone,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
                       decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'Add Qty: min-20',
                     // labelText: 'Income Account',
-                  )),
+                  ),
+                  onChanged: (value){
+                        context.read<SalesDataProvider>().updateAddQty20(value);
+                  },
+                  ),
                 ),
                 Container(
                   // margin: EdgeInsets.only(top: 20),
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: TextFormField(
+                            keyboardType: TextInputType.phone,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                      ],
                       decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'Discount Price',
                     // labelText: 'Income Account',
-                  )),
+                  ),
+                  onChanged: (value){
+                        context.read<SalesDataProvider>().updateDiscountPrice20(value);
+                  },
+                  ),
                 ),
               ],
             ),
@@ -124,27 +163,51 @@ class _SaleQtyPriceState extends State<SaleQtyPrice> {
                   // margin: EdgeInsets.only(top: 20),
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: TextFormField(
+                            keyboardType: TextInputType.phone,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                      ],
                       decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'Add Qty: min-30',
                     // labelText: 'Income Account',
-                  )),
+                  ),
+                  onChanged: (value){
+                        context.read<SalesDataProvider>().updateAddQty30(value);
+                  },
+                  ),
                 ),
                 Container(
                   // margin: EdgeInsets.only(top: 20),
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: TextFormField(
+                            keyboardType: TextInputType.phone,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                      ],
                       decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'Discount Price',
                     // labelText: 'Income Account',
-                  )),
+                  ),
+                  onChanged: (value){
+                        context.read<SalesDataProvider>().updateDiscountPrice30(value);
+                  },
+                  ),
                 ),
               ],
             ),
           ),
 
-          //input 1
+          
+        ],
+      ),
+    );
+  }
+}
+
+
+//input 1
 
           // Container(
           //   child: Row(
@@ -179,8 +242,3 @@ class _SaleQtyPriceState extends State<SaleQtyPrice> {
           //     ],
           //   ),
           // )
-        ],
-      ),
-    );
-  }
-}

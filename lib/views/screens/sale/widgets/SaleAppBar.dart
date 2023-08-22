@@ -1,4 +1,6 @@
+import 'package:acounting_max/Provider/SalesFormDataProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SaleAppBar extends StatefulWidget {
   const SaleAppBar({super.key});
@@ -19,7 +21,9 @@ class _SaleAppBarState extends State<SaleAppBar> {
              IconButton(
             icon: const Icon(Icons.save),
             tooltip: 'Comment Icon',
-            onPressed: () {},
+            onPressed: () {
+              context.read<SalesDataProvider>().SalesSave();
+            },
           ), //IconButton
             // Text(
             // "Save",

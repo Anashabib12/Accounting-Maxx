@@ -1,4 +1,6 @@
+import 'package:acounting_max/Provider/SalesFormDataProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SaleTexterea extends StatefulWidget {
   const SaleTexterea({super.key});
@@ -41,6 +43,9 @@ class _SaleTextereaState extends State<SaleTexterea> {
                 onChanged: (value) {
                   setState(() {
                     _textValue = value;
+                    context
+                        .read<SalesDataProvider>()
+                        .updateSalesDescription(value);
                   });
                 },
               ),

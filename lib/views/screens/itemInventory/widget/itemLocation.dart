@@ -80,7 +80,9 @@
 // }
 
 
+import 'package:acounting_max/Provider/PerchaseFormData.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ItemLocation extends StatefulWidget {
   const ItemLocation({super.key});
@@ -128,6 +130,7 @@ class _ItemLocationState extends State<ItemLocation> {
                             !selectedLocations.contains(newValue)) {
                           setState(() {
                             selectedLocations.add(newValue);
+                            context.read<ItemForm3Provider>().updateSelectedLocations(selectedLocations); // Update selected locations in the provider
                           });
                         }
                       },

@@ -1,4 +1,6 @@
+import 'package:acounting_max/Provider/ItemFormDataProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ItemDropdown extends StatefulWidget {
   const ItemDropdown({Key? key}) : super(key: key);
@@ -13,7 +15,8 @@ class _ItemDropdownState extends State<ItemDropdown> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [ Container(
+      children: [
+        Container(
           margin: EdgeInsets.only(top: 30.0, left: 25),
           child: const Row(
             children: [
@@ -34,6 +37,7 @@ class _ItemDropdownState extends State<ItemDropdown> {
             onChanged: (String? newValue) {
               setState(() {
                 selectedOption = newValue!;
+                 context.read<ItemFormProvider>().updateSelectedCategory(newValue);
               });
             },
             items: <String>['Retailer', 'Wholesaler'].map((String value) {

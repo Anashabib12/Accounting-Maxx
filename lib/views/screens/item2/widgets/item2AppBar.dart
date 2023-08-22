@@ -1,4 +1,7 @@
+import 'package:acounting_max/Provider/ItemFormDataProvider.dart';
+import 'package:acounting_max/Provider/item2FormDataProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Item2AppBar extends StatefulWidget {
   const Item2AppBar({super.key});
@@ -20,7 +23,10 @@ class _Item2AppBarState extends State<Item2AppBar> {
              IconButton(
             icon: const Icon(Icons.save),
             tooltip: 'Comment Icon',
-            onPressed: () {},
+            onPressed: () {
+               context.read<Item2FormProvider>().Item2Save();
+              //  context.read<ItemFormProvider>().save();
+            },
           ), //IconButton
             // Text(
             // "Save",
