@@ -1,8 +1,5 @@
 import 'package:acounting_max/Provider/ItemFormDataProvider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 
 class AppBarwidgets extends StatefulWidget {
@@ -27,10 +24,27 @@ class _AppBarwidgetsState extends State<AppBarwidgets> {
             icon: const Icon(Icons.save),
             tooltip: 'Comment Icon',
             onPressed: () {
-              context.read<ItemFormProvider>().save();
-              //  context.read<ItemFormProvider>().save();
-              // context.read<ItemFormProvider>().clearFields();
+              final formProvider = context.read<ItemFormProvider>();
+              if (formProvider.validateItemName(formProvider.itemName,
+                      formProvider.itemCode, formProvider.purchasePrice) ==
+                  null) {
+                formProvider.save();
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("successfully save")));
+              }
+              // else if(formProvider.validateItemName(formProvider.itemCode) == null){
+
+              // }
+              else {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text("Please fill all Mandatory fields")));
+              }
             },
+            // onPressed: () {
+            //   context.read<ItemFormProvider>().save();
+            //   //  context.read<ItemFormProvider>().save();
+            //   // context.read<ItemFormProvider>().clearFields();
+            // },
           ), //IconButton
           // Text(
           // "Save",

@@ -15,19 +15,29 @@ class _itemFormWidgetState extends State<itemFormWidget> {
   final TextEditingController ItemCode = TextEditingController();
   final TextEditingController PurchasePrice = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  //  late String  itemName;
+  // String? _validateItemName(String? value) {
+  //   if (value == null || value.isEmpty) {
+  //     return 'Name Required';
+  //   }
+  //   return null;
+  // }
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 25.0, right: 25, top: 20.0),
       child: Form(
         key: _formKey,
+        // autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Column(
           // crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             // const padding(
             //  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
             // )
+            
             TextFormField(
+              //  validator: _validateItemName,
               controller: ItemName,
               decoration: const InputDecoration(
                 // icon: const Icon(Icons.person),
@@ -35,8 +45,14 @@ class _itemFormWidgetState extends State<itemFormWidget> {
                 labelText: 'Item Name',
               ),
               onChanged: (value) {
+                //  itemName = value;
                 context.read<ItemFormProvider>().updateItemName(value);
+                // else{
+                  // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text("item name")));
+                // }
               },
+              // ? context.watch<ItemFormProvider>().itemNameError
+              // : null, // Set to null when there's no error
               // validator: (value) {
               //   if (value == null || value.isEmpty) {
               //     return 'Please enter some text';
@@ -67,9 +83,7 @@ class _itemFormWidgetState extends State<itemFormWidget> {
                 labelText: 'Purchase Price',
               ),
               onChanged: (value) {
-                context
-                    .read<ItemFormProvider>()
-                    .updatePurchasePrice(int.parse(value));
+                context.read<ItemFormProvider>().updatePurchasePrice(value);//int.parse(value)
               },
             ),
             //  Container(

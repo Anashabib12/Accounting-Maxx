@@ -1,4 +1,6 @@
+import 'package:acounting_max/Provider/VendorProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class OtherDetails extends StatefulWidget {
   const OtherDetails({super.key});
@@ -64,6 +66,11 @@ class _OtherDetailsState extends State<OtherDetails> {
               onChanged: (newValue) {
                 setState(() {
                   selectedCurrency = newValue!;
+                
+                           context
+                                .read<VenderProvider>()
+                                .updateCurrencies(newValue as List<String>);
+                      
                 });
               },
               items: currencies.map<DropdownMenuItem<String>>((currency) {
@@ -86,6 +93,11 @@ class _OtherDetailsState extends State<OtherDetails> {
                 labelText: 'Amount',
                 contentPadding: EdgeInsets.symmetric(horizontal: 12),
               ),
+              onChanged: (value) {
+                 context
+                                .read<VenderProvider>()
+                                .updateAmount(value);
+              },
             ),
             const SizedBox(height: 11),
             // Payment terms Dropdown
@@ -94,6 +106,9 @@ class _OtherDetailsState extends State<OtherDetails> {
               onChanged: (newValue) {
                 setState(() {
                   selectedPaymentTerm = newValue!;
+                  context
+                                .read<VenderProvider>()
+                                .updatePaymentTerms(newValue as List<String>);
                 });
               },
               items: PaymentTerms.map<DropdownMenuItem<String>>((PaymentTerms) {

@@ -1,3 +1,4 @@
+import 'package:acounting_max/Provider/VendorProvider.dart';
 import 'package:acounting_max/views/screens/SystemInfo/Systeminfo.dart';
 import 'package:acounting_max/views/screens/contactPerson/contactPersonScreen.dart';
 import 'package:acounting_max/views/screens/dashboard/dashboardScreen.dart';
@@ -8,6 +9,7 @@ import 'package:acounting_max/views/screens/vendorAddBilling/vendorAddBillingScr
 import 'package:acounting_max/views/screens/vendorAddShipping/addShippingScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class VendorForm extends StatefulWidget {
   static bool isVisible = true;
@@ -18,7 +20,7 @@ class VendorForm extends StatefulWidget {
 }
 
 class _VendorFormState extends State<VendorForm> {
-  String _selectedVendorType = 'company';
+  String _selectedVendorType = 'individual';
   String _selectedCategory = 'Retailer'; // Default selected category
   final _formKey = GlobalKey<FormState>();
 
@@ -40,6 +42,9 @@ class _VendorFormState extends State<VendorForm> {
                       onChanged: (value) {
                         setState(() {
                           _selectedVendorType = 'company';
+                          context
+                              .read<VenderProvider>()
+                              .updateSelectedStatus(value!);
                         });
                       },
                     ),
@@ -51,6 +56,9 @@ class _VendorFormState extends State<VendorForm> {
                       onChanged: (value) {
                         setState(() {
                           _selectedVendorType = 'individual';
+                          context
+                              .read<VenderProvider>()
+                              .updateSelectedStatus(value!);
                         });
                       },
                     ),
@@ -71,12 +79,15 @@ class _VendorFormState extends State<VendorForm> {
                             hintText: 'Company Name',
                             labelText: 'Company Name',
                           ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Company Name is required';
-                            }
-                            return null;
+                          onChanged: (value) {
+                            context.read<VenderProvider>().updateComany(value);
                           },
+                          // validator: (value) {
+                          //   if (value == null || value.isEmpty) {
+                          //     return 'Company Name is required';
+                          //   }
+                          //   return null;
+                          // },
                         ),
                         // Add more company-specific fields here if needed.
                       ],
@@ -87,18 +98,31 @@ class _VendorFormState extends State<VendorForm> {
                             hintText: 'First Name',
                             labelText: 'First Name',
                           ),
+                          onChanged: (value) {
+                            context
+                                .read<VenderProvider>()
+                                .updateFirstName(value);
+                          },
                         ),
                         TextFormField(
                           decoration: const InputDecoration(
                             hintText: 'Middle Name',
                             labelText: 'Middle Name',
                           ),
+                          onChanged: (value) {
+                            context.read<VenderProvider>().updateMiddleName(value);
+                          },
                         ),
                         TextFormField(
                           decoration: const InputDecoration(
                             hintText: 'Last Name',
                             labelText: 'Last Name',
                           ),
+                          onChanged: (value) {
+                            context
+                                .read<VenderProvider>()
+                                .updateLastName(value);
+                          },
                         ),
                         // Add more individual-specific fields here if needed.
                       ],
@@ -109,6 +133,11 @@ class _VendorFormState extends State<VendorForm> {
                         onChanged: (newValue) {
                           setState(() {
                             _selectedCategory = newValue!;
+                            // onChanged: (value) {
+                            context
+                                .read<VenderProvider>()
+                                .updateSelectedCategory(newValue);
+                            // },
                           });
                         },
                         items: const [
@@ -128,21 +157,23 @@ class _VendorFormState extends State<VendorForm> {
                       ),
 
                       TextFormField(
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: const InputDecoration(
-                          hintText: 'Email',
-                          labelText: 'Email',
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter your email';
-                          }
-                          if (value.indexOf('@') != value.lastIndexOf('@')) {
-                            return 'Only one "@" symbol is allowed' ;
-                          }
-                          return null;
-                        }
-                      ),
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: const InputDecoration(
+                            hintText: 'Email',
+                            labelText: 'Email',
+                          ),
+                          onChanged: (value) {
+                            context.read<VenderProvider>().updateEmail(value);
+                          },
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your email';
+                            }
+                            if (value.indexOf('@') != value.lastIndexOf('@')) {
+                              return 'Only one "@" symbol is allowed';
+                            }
+                            return null;
+                          }),
                       TextFormField(
                         keyboardType: TextInputType.phone,
                         inputFormatters: [
@@ -152,6 +183,9 @@ class _VendorFormState extends State<VendorForm> {
                           hintText: 'Main Phone',
                           labelText: 'Main Phone',
                         ),
+                        onChanged: (value) {
+                          context.read<VenderProvider>().updateMainPhone(value);
+                        },
                       ),
                       TextFormField(
                         keyboardType: TextInputType.phone,
@@ -162,6 +196,9 @@ class _VendorFormState extends State<VendorForm> {
                           hintText: 'Work Phone',
                           labelText: 'Work Phone',
                         ),
+                        onChanged: (value) {
+                          context.read<VenderProvider>().updateWorkPhone(value);
+                        },
                       ),
                     ],
                   ),
@@ -188,8 +225,8 @@ class _VendorFormState extends State<VendorForm> {
                       MaterialPageRoute(
                           builder: (context) => const AddShippingScreen()))
                 }),
-        _selectedVendorType == "company"? 
-        vendorButton(
+        _selectedVendorType == "company"
+            ? vendorButton(
                 name: 'Add Contact Person',
                 vendorPressFunction: () => {
                       Navigator.push(
@@ -207,7 +244,7 @@ class _VendorFormState extends State<VendorForm> {
                       MaterialPageRoute(
                           builder: (context) => const ItemScreen3()))
                 }),
-                vendorButton(
+        vendorButton(
             name: 'System Information',
             vendorPressFunction: () => {
                   Navigator.push(
@@ -215,14 +252,14 @@ class _VendorFormState extends State<VendorForm> {
                       MaterialPageRoute(
                           builder: (context) => const SystemInfo()))
                 }),
-            //     vendorButton(
-            // name: 'dashboard',
-            // vendorPressFunction: () => {
-            //       Navigator.push(
-            //           context,
-            //           MaterialPageRoute(
-            //               builder: (context) => const dashBoard()))
-            //     }),
+        //     vendorButton(
+        // name: 'dashboard',
+        // vendorPressFunction: () => {
+        //       Navigator.push(
+        //           context,
+        //           MaterialPageRoute(
+        //               builder: (context) => const dashBoard()))
+        //     }),
       ],
     );
   }

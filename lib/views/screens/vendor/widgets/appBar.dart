@@ -1,4 +1,6 @@
+import 'package:acounting_max/Provider/VendorProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class VendorAppbar extends StatefulWidget {
   const VendorAppbar({super.key});
@@ -23,9 +25,13 @@ class _VendorAppbarState extends State<VendorAppbar> {
         actions: [
           IconButton(
             icon: const Icon(Icons.save),
-            onPressed: (){
-
-            } ,
+            // onPressed: (){
+  onPressed: () {
+              context.read<VenderProvider>().vendor_Obj_Save();
+              //  context.read<ItemFormProvider>().save();
+              // context.read<ItemFormProvider>().clearFields();
+            },
+            // } ,
           ) 
             
         ],

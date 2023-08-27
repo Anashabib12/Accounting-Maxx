@@ -24,8 +24,18 @@ class _Item2AppBarState extends State<Item2AppBar> {
             icon: const Icon(Icons.save),
             tooltip: 'Comment Icon',
             onPressed: () {
-               context.read<Item2FormProvider>().Item2Save();
-              //  context.read<ItemFormProvider>().save();
+               final formProvider = context.read<Item2FormProvider>();
+                if (formProvider.validateItemName(formProvider.Income_account,formProvider.COGS_account,formProvider.Inventory_account) == null) {
+                  formProvider.Item2Save();
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text("successfully save")));
+                }
+                // else if(){
+
+                // }
+                else{
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text("Please fill all Mandatory fields")));
+                }
+              //  context.read<Item2FormProvider>().Item2Save();
             },
           ), //IconButton
             // Text(
