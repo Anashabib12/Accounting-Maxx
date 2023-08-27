@@ -23,7 +23,21 @@ class _ItemInventoryAppBarState extends State<ItemInventoryAppBar> {
             icon: const Icon(Icons.save),
             tooltip: 'Comment Icon',
             onPressed: () {
-              context.read<ItemForm3Provider>().purchasesave();
+                 final formProvider = context.read<ItemForm3Provider>();
+              if (formProvider.validateItemName(formProvider.selectedCostingOption,formProvider.selectedOptionVender, formProvider.purchaseDescription) ==
+                  null) {
+                formProvider.purchasesave();
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("successfully save")));
+              }
+              // else if(formProvider.validateItemName(formProvider.itemCode) == null){
+
+              // }
+              else {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text("Please fill all Mandatory fields")));
+              }
+              // context.read<ItemForm3Provider>().purchasesave();
             },
           ), //IconButton
           // Text(

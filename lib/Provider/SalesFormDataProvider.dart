@@ -41,50 +41,77 @@ class SalesDataProvider extends ChangeNotifier {
     _BasePrice = value;
     notifyListeners();
   }
+
   // row1
   void updateAddQty10(String value) {
     _AddQty10 = value;
     notifyListeners();
   }
+
   void updateDiscountPrice10(String value) {
     _DiscountPrice10 = value;
     notifyListeners();
   }
+
   // row2
   void updateAddQty20(String value) {
     _AddQty20 = value;
     notifyListeners();
   }
+
   void updateDiscountPrice20(String value) {
     _DiscountPrice20 = value;
     notifyListeners();
   }
+
   // row3
   void updateAddQty30(String value) {
     _AddQty30 = value;
     notifyListeners();
   }
+
   void updateDiscountPrice30(String value) {
     _DiscountPrice30 = value;
     notifyListeners();
   }
 
+  //validation
+  String? validateItemName(String salesDescription, int salesPrise,String BasePrice, String AddQty10, String DiscountPrice10) {
+    if (salesDescription.isEmpty) {
+      return 'Please enter an item name';
+    } else if (salesPrise.isNaN) {
+      return 'Please enter an item name';
+    } else if (BasePrice.isEmpty) {
+      return 'Please enter an item name';
+    } else if (AddQty10.isEmpty) {
+      return 'Please enter an item name';
+    } else if (DiscountPrice10.isEmpty) {
+      return 'Please enter an item name';
+    } else {
+      return null; // Return null when validation fails
+    }
+  }
+
   final Sales_save = {};
 
   void SalesSave() {
-    Sales_save["Sales_description"] = salesDescription;
-    Sales_save["SalesPrice"] = salesPrise;
-    Sales_save['Base Price'] = BasePrice;
-    // row1
-    Sales_save['Add_Qty:_min_10'] = AddQty10;
-    Sales_save['discountFor10_Qty'] = DiscountPrice10;
-    // row2
-    Sales_save['Add_Qty:_min_20'] = AddQty20;
-    Sales_save['discountFor20_Qty'] = DiscountPrice20;
-    // row3
-    Sales_save['Add_Qty:_min_30'] = AddQty30;
-    Sales_save['discountFor30_Qty'] = DiscountPrice30;
+    if (validateItemName(salesDescription, salesPrise, BasePrice, AddQty10,
+            DiscountPrice10) ==
+        null) {
+      Sales_save["Sales_description"] = salesDescription;
+      Sales_save["SalesPrice"] = salesPrise;
+      Sales_save['Base Price'] = BasePrice;
+      // row1
+      Sales_save['Add_Qty:_min_10'] = AddQty10;
+      Sales_save['discountFor10_Qty'] = DiscountPrice10;
+      // row2
+      Sales_save['Add_Qty:_min_20'] = AddQty20;
+      Sales_save['discountFor20_Qty'] = DiscountPrice20;
+      // row3
+      Sales_save['Add_Qty:_min_30'] = AddQty30;
+      Sales_save['discountFor30_Qty'] = DiscountPrice30;
 
-    print(Sales_save);
+      print(Sales_save);
+    }
   }
 }

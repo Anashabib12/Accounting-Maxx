@@ -22,7 +22,22 @@ class _SaleAppBarState extends State<SaleAppBar> {
             icon: const Icon(Icons.save),
             tooltip: 'Comment Icon',
             onPressed: () {
-              context.read<SalesDataProvider>().SalesSave();
+               final formProvider = context.read<SalesDataProvider>();
+              if (formProvider.validateItemName(formProvider.salesDescription,
+                      formProvider.salesPrise, formProvider.BasePrice, formProvider.AddQty10, formProvider.DiscountPrice10) ==
+                  null) {
+                formProvider.SalesSave();
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("successfully save")));
+              }
+              // else if(formProvider.validateItemName(formProvider.itemCode) == null){
+
+              // }
+              else {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text("Please fill all Mandatory fields")));
+              }
+              // context.read<SalesDataProvider>().SalesSave();
             },
           ), //IconButton
             // Text(

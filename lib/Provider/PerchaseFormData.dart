@@ -27,7 +27,7 @@ class ItemForm3Provider extends ChangeNotifier {
   String _selectedOptionVender = 'Vendor1';
   bool _isDropShippingChecked = false;
   String _purchaseDescripition = '';
- List<String> _selectedLocations = []; // Add this property
+  List<String> _selectedLocations = []; // Add this property
 
   String get selectedCostingOption => _selectedCostingOption;
   String get selectedOptionVender => _selectedOptionVender;
@@ -35,6 +35,7 @@ class ItemForm3Provider extends ChangeNotifier {
   String get purchaseDescription => _purchaseDescripition;
   List<String> get selectedLocations => _selectedLocations;
 
+  // Other methods and properties...
   void updateCostingOption(String category) {
     _selectedCostingOption = category;
     notifyListeners();
@@ -54,20 +55,36 @@ class ItemForm3Provider extends ChangeNotifier {
     _purchaseDescripition = value;
     notifyListeners();
   }
+
   void updateSelectedLocations(List<String> locations) {
     _selectedLocations = locations;
     notifyListeners();
   }
 
-  // Other methods and properties...
+  //validation
+  String? validateItemName(String selectedCostingOption,
+      String selectedOptionVender, String purchaseDescription) {
+    if (selectedCostingOption.isEmpty) {
+      return 'Please enter an item name';
+    } else if (selectedOptionVender.isEmpty) {
+      return 'Please enter an item name';
+    } else if (purchaseDescription.isEmpty) {
+      return 'Please enter an item name';
+    } else {
+      return null; // Return null when validation fails
+    }
+  }
+
   final purchaseSave = {};
 
   void purchasesave() {
+    if (validateItemName(selectedCostingOption,selectedOptionVender,purchaseDescription) == null) {
     purchaseSave["selectedCostingOption"] = selectedCostingOption;
     purchaseSave["selectedVender"] = selectedOptionVender;
     purchaseSave["dropshiping"] = isDropShippingChecked;
     purchaseSave["purchase_description"] = purchaseDescription;
-     purchaseSave["selectedLocations"] = selectedLocations;
+    purchaseSave["selectedLocations"] = selectedLocations;
     print(purchaseSave);
+  }
   }
 }

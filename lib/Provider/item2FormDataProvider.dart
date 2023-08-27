@@ -28,13 +28,31 @@ class Item2FormProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  String? validateItemName(
+      String Income_account, String COGS_account, String Inventory_account) {
+    if (Income_account.isEmpty) {
+      return 'Please enter an item name';
+    } else if (COGS_account.isEmpty) {
+      return 'Please enter an item name';
+    } else if (Inventory_account.isEmpty) {
+      return 'Please enter an item name';
+    } else {
+      return null; // Return null when validation fails
+    }
+  }
+
   // now save this provider
   // void Item2Save() {
   void Item2Save() {
-    ItemObjectSave["IncomeAcount"] = Income_account;
-    ItemObjectSave["COGSAccount"] = COGS_account;
-    ItemObjectSave["InventoryAccount"] = Inventory_account;
+    if (validateItemName(Income_account, COGS_account, Inventory_account) == null) {
+      // ItemObjectSave["IncomeAcount"] = "waiz";
+      // ItemObjectSave["COGSAccount"] = "mehdi";
+      // ItemObjectSave["InventoryAccount"] = "anas";
+      ItemObjectSave["IncomeAcount"] = Income_account;
+      ItemObjectSave["COGSAccount"] = COGS_account;
+      ItemObjectSave["InventoryAccount"] = Inventory_account;
 
-    print(ItemObjectSave);
+      print(ItemObjectSave);
+    }
   }
 }
