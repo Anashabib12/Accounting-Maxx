@@ -1,4 +1,6 @@
+import 'package:acounting_max/Provider/CustomerProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AppbarWidget extends StatefulWidget {
   const AppbarWidget({super.key});
@@ -20,14 +22,13 @@ class _AppbarWidgetState extends State<AppbarWidget> {
       title: const Text('New Customer'),
       backgroundColor: const Color(0xFF50C2C9),
       actions: [
-          IconButton(
-            icon: const Icon(Icons.save),
-            onPressed: (){
-
-            } ,
-          ) 
-            
-        ],
+        IconButton(
+          icon: const Icon(Icons.save),
+          onPressed: () {
+            context.read<CustomerForm>().Customer_Obj_Save();
+          },
+        )
+      ],
     );
   }
 }

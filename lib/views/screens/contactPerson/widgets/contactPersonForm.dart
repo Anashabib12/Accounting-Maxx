@@ -1,6 +1,8 @@
 // ignore: file_names
+import 'package:acounting_max/Provider/VendorContactPerson.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class ContactPersonForm extends StatefulWidget {
   const ContactPersonForm({super.key});
@@ -35,28 +37,38 @@ class _ContactPersonFormState extends State<ContactPersonForm> {
                 hintText: 'First Name',
                 labelText: 'First Name',
               ),
+              onChanged: (value) {
+                context.read<VenderContactPersonProvider>().updateFirstName(value);
+              },
             ),
             TextFormField(
               decoration: const InputDecoration(
                 hintText: 'Last Name',
                 labelText: 'Last Name',
               ),
-            ),
-            TextFormField(
-              validator: (value) {
-                if (value == null || value.isEmpty){
-                  return 'PLease enter a valid email';
-                }
-                if (value.indexOf('@') != value.lastIndexOf('@')){
-                  return 'Only one "@" symbol is allowed';
-                }
-                return null;  
+              onChanged: (value) {
+                context.read<VenderContactPersonProvider>().updateLastName(value);
               },
+            ),
+            
+            TextFormField(
+              // validator: (value) {
+              //   if (value == null || value.isEmpty){
+              //     return 'PLease enter a valid email';
+              //   }
+              //   if (value.indexOf('@') != value.lastIndexOf('@')){
+              //     return 'Only one "@" symbol is allowed';
+              //   }
+              //   return null;  
+              // },
               keyboardType: TextInputType.emailAddress,
               decoration: const InputDecoration(
                 hintText: 'Email',
                 labelText: 'Email',
               ),
+              onChanged: (value) {
+                context.read<VenderContactPersonProvider>().updateEmail(value);
+              },
             ),
             TextFormField(
               keyboardType: TextInputType.phone,
@@ -67,10 +79,16 @@ class _ContactPersonFormState extends State<ContactPersonForm> {
                 hintText: 'Contact Phone',
                 labelText: 'Contact Phone',
               ),
+              onChanged: (value) {
+                context.read<VenderContactPersonProvider>().updateContactPhone(value);
+              },
             ),
             DropdownButtonFormField(
               value: _selectedJobeRole,
               onChanged: (newValue){
+// onChanged: (value) {
+                context.read<VenderContactPersonProvider>().updateJoobRole(newValue!);
+              // },                
                 setState(() {
                   _selectedJobeRole = newValue!;
                 });

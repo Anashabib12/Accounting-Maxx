@@ -1,8 +1,15 @@
 // import 'package:acounting_max/views/screens/customerPage/customer-screen.dart';
 
+import 'package:acounting_max/Provider/CustomerAddBilling.dart';
+import 'package:acounting_max/Provider/CustomerAddShipping.dart';
+import 'package:acounting_max/Provider/CustomerContactPerson.dart';
+import 'package:acounting_max/Provider/CustomerProvider.dart';
 import 'package:acounting_max/Provider/ItemFormDataProvider.dart';
 import 'package:acounting_max/Provider/PerchaseFormData.dart';
 import 'package:acounting_max/Provider/SalesFormDataProvider.dart';
+import 'package:acounting_max/Provider/VendorAddShipping.dart';
+import 'package:acounting_max/Provider/VendorAddbillingProvider.dart';
+import 'package:acounting_max/Provider/VendorContactPerson.dart';
 import 'package:acounting_max/Provider/VendorProvider.dart';
 import 'package:acounting_max/views/screens/dashboard/dashboardScreen.dart';
 // import 'package:acounting_max/views/screens/vendor/vendorScreen.dart';
@@ -29,6 +36,17 @@ void main() {
 
       // Vendor provider
       Provider<VenderProvider>( create : (_)  =>VenderProvider()),
+      Provider<VenderAddBillingProvider>( create : (_)  =>VenderAddBillingProvider()),
+      Provider<VenderAddShippingProvider>( create : (_)  =>VenderAddShippingProvider()),
+      Provider<VenderContactPersonProvider>( create : (_)  =>VenderContactPersonProvider()),
+      // Customer provider
+      Provider<CustomerForm>( create : (_)  =>CustomerForm()),
+      Provider<CustomerAddBillingProvider>( create : (_)  =>CustomerAddBillingProvider()),
+      Provider<CustomerAddShippingProvider>( create : (_)  =>CustomerAddShippingProvider()),
+      Provider<CustomerContactPersonProvider>( create : (_)  =>CustomerContactPersonProvider()),
+      // Provider<VenderAddBillingProvider>( create : (_)  =>VenderAddBillingProvider()),
+      // Provider<VenderAddShippingProvider>( create : (_)  =>VenderAddShippingProvider()),
+      // Provider<VenderContactPersonProvider>( create : (_)  =>VenderContactPersonProvider()),
     ],
     child: const MyApp(),
   ));
