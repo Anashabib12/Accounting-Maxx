@@ -14,6 +14,12 @@ class SalesDataProvider extends ChangeNotifier {
   //row3
   String _AddQty30 = '';
   String _DiscountPrice30 = '';
+  //row4
+  String _AddQty4 = '';
+  String _DiscountPrice4 = '';
+  //row5
+  String _AddQty5 = '';
+  String _DiscountPrice5 = '';
 // get
   String get salesDescription => _salesDescripition;
   int get salesPrise => _salesPrice;
@@ -27,6 +33,12 @@ class SalesDataProvider extends ChangeNotifier {
   //row3
   String get AddQty30 => _AddQty30;
   String get DiscountPrice30 => _DiscountPrice30;
+  //row4
+  String get AddQty4 => _AddQty4;
+  String get DiscountPrice4 => _DiscountPrice4;
+  //row5
+  String get AddQty5 => _AddQty5;
+  String get DiscountPrice5 => _DiscountPrice5;
 // method
   void updateSalesDescription(String newValue) {
     _salesDescripition = newValue;
@@ -74,6 +86,26 @@ class SalesDataProvider extends ChangeNotifier {
     _DiscountPrice30 = value;
     notifyListeners();
   }
+  // row4
+  void updateAddQty4(String value) {
+    _AddQty4 = value;
+    notifyListeners();
+  }
+
+  void updatePrice4(String value) {
+    _DiscountPrice4 = value;
+    notifyListeners();
+  }
+  // row3
+  void updateAddQty5(String value) {
+    _AddQty5 = value;
+    notifyListeners();
+  }
+
+  void updatePrice5(String value) {
+    _DiscountPrice5 = value;
+    notifyListeners();
+  }
 
   //validation
   String? validateItemName(String salesDescription, int salesPrise,String BasePrice, String AddQty10, String DiscountPrice10) {
@@ -92,7 +124,9 @@ class SalesDataProvider extends ChangeNotifier {
     }
   }
 
-  final Sales_save = {};
+  final Sales_save = {
+    
+  };
 
   void SalesSave() {
     if (validateItemName(salesDescription, salesPrise, BasePrice, AddQty10,
@@ -102,14 +136,20 @@ class SalesDataProvider extends ChangeNotifier {
       Sales_save["SalesPrice"] = salesPrise;
       Sales_save['Base Price'] = BasePrice;
       // row1
-      Sales_save['Add_Qty:_min_10'] = AddQty10;
-      Sales_save['discountFor10_Qty'] = DiscountPrice10;
+      Sales_save['QTY 1'] = AddQty10;//Add_Qty:_min_10
+      Sales_save['Price 1'] = DiscountPrice10;
       // row2
-      Sales_save['Add_Qty:_min_20'] = AddQty20;
-      Sales_save['discountFor20_Qty'] = DiscountPrice20;
+      Sales_save['QTY 2'] = AddQty20;
+      Sales_save['Price 2'] = DiscountPrice20;
       // row3
-      Sales_save['Add_Qty:_min_30'] = AddQty30;
-      Sales_save['discountFor30_Qty'] = DiscountPrice30;
+      Sales_save['QTY 3'] = AddQty30;
+      Sales_save['Price 3'] = DiscountPrice30;
+      // row4
+      Sales_save['QTY 4'] = AddQty4;
+      Sales_save['Price 4'] = DiscountPrice4;
+      // row3
+      Sales_save['QTY 5'] = AddQty5;
+      Sales_save['Price 5'] = DiscountPrice5;
 
       print(Sales_save);
     }
