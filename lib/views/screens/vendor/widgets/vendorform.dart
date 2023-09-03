@@ -1,7 +1,6 @@
 import 'package:acounting_max/Provider/VendorProvider.dart';
 import 'package:acounting_max/views/screens/SystemInfo/Systeminfo.dart';
 import 'package:acounting_max/views/screens/contactPerson/contactPersonScreen.dart';
-import 'package:acounting_max/views/screens/dashboard/dashboardScreen.dart';
 import 'package:acounting_max/views/screens/item3/Itemscreen3.dart';
 import 'package:acounting_max/views/screens/vendor/widgets/otherdetails.dart';
 import 'package:acounting_max/views/screens/vendor/widgets/vendorButton.dart';
@@ -20,12 +19,27 @@ class VendorForm extends StatefulWidget {
 }
 
 class _VendorFormState extends State<VendorForm> {
+  TextEditingController First_name = TextEditingController();
+  TextEditingController Middle_name = TextEditingController();
+  TextEditingController Last_name = TextEditingController();
+  TextEditingController Company_name = TextEditingController();
   String _selectedVendorType = 'individual';
+
   String _selectedCategory = 'Retailer'; // Default selected category
   final _formKey = GlobalKey<FormState>();
 
   @override
+  void dispose() {
+    Company_name.dispose();
+    First_name.dispose();
+    Middle_name.dispose();
+    Last_name.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
+    // bool isCompany = _selectedVendorType == 'company';
+    // bool isIndividual = _selectedVendorType == 'individual';
     return Column(
       children: [
         Container(
@@ -40,8 +54,15 @@ class _VendorFormState extends State<VendorForm> {
                       value: 'company',
                       groupValue: _selectedVendorType,
                       onChanged: (value) {
+                        context.read<VenderProvider>().updateFirstName('');
+                        context.read<VenderProvider>().updateLastName('');
+                        context.read<VenderProvider>().updateMiddleName('');
                         setState(() {
                           _selectedVendorType = 'company';
+                          First_name.clear();
+                          Middle_name.clear();
+                          Last_name.clear();
+
                           context
                               .read<VenderProvider>()
                               .updateSelectedStatus(value!);
@@ -54,11 +75,13 @@ class _VendorFormState extends State<VendorForm> {
                       value: 'individual',
                       groupValue: _selectedVendorType,
                       onChanged: (value) {
+                        context.read<VenderProvider>().updateComany('');
                         setState(() {
                           _selectedVendorType = 'individual';
-                          context
-                              .read<VenderProvider>()
-                              .updateSelectedStatus(value!);
+                          Company_name.clear();
+                          // context
+                          //     .read<VenderProvider>()
+                          //     .updateSelectedStatus(value!);
                         });
                       },
                     ),
@@ -75,13 +98,18 @@ class _VendorFormState extends State<VendorForm> {
                       // Render Company Information Fields if selectedVendorType is 'company'
                       if (_selectedVendorType == 'company') ...[
                         TextFormField(
+                          controller: Company_name,
                           decoration: const InputDecoration(
                             hintText: 'Company Name',
                             labelText: 'Company Name',
                           ),
                           onChanged: (value) {
                             context.read<VenderProvider>().updateComany(value);
+                            setState(() {
+                              // _isValidated = true;
+                            });
                           },
+                          // Disable for individual
                           // validator: (value) {
                           //   if (value == null || value.isEmpty) {
                           //     return 'Company Name is required';
@@ -94,6 +122,7 @@ class _VendorFormState extends State<VendorForm> {
                       // Render Individual Information Fields if selectedVendorType is 'individual'
                       if (_selectedVendorType == 'individual') ...[
                         TextFormField(
+                          controller: First_name,
                           decoration: const InputDecoration(
                             hintText: 'First Name',
                             labelText: 'First Name',
@@ -102,18 +131,26 @@ class _VendorFormState extends State<VendorForm> {
                             context
                                 .read<VenderProvider>()
                                 .updateFirstName(value);
+                            setState(() {});
                           },
+                          // Disable for company
+                          // enabled: isIndividual,
                         ),
                         TextFormField(
+                          controller: Middle_name,
                           decoration: const InputDecoration(
                             hintText: 'Middle Name',
                             labelText: 'Middle Name',
                           ),
                           onChanged: (value) {
-                            context.read<VenderProvider>().updateMiddleName(value);
+                            context
+                                .read<VenderProvider>()
+                                .updateMiddleName(value);
+                            setState(() {});
                           },
                         ),
                         TextFormField(
+                          controller: Last_name,
                           decoration: const InputDecoration(
                             hintText: 'Last Name',
                             labelText: 'Last Name',
@@ -122,6 +159,7 @@ class _VendorFormState extends State<VendorForm> {
                             context
                                 .read<VenderProvider>()
                                 .updateLastName(value);
+                            setState(() {});
                           },
                         ),
                         // Add more individual-specific fields here if needed.
@@ -236,6 +274,14 @@ class _VendorFormState extends State<VendorForm> {
                                   const ContactPersonScreen()))
                     })
             : const SizedBox(),
+             vendorButton(
+            name: 'Contact Person',
+            vendorPressFunction: () => {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ContactPersonScreen()))
+                }),
         vendorButton(
             name: 'Communication',
             vendorPressFunction: () => {

@@ -1,5 +1,7 @@
 // ignore: file_names
+import 'package:acounting_max/Provider/VendorAddbillingProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class BillingForm extends StatefulWidget {
   const BillingForm({super.key});
@@ -51,6 +53,9 @@ class _BillingFormState extends State<BillingForm> {
                             hintText: 'Address',
                             labelText: 'Address',
                           ),
+                          onChanged: (value) {
+                            context.read<VenderAddBillingProvider>().updateAddress(value);
+                          },
                         ),
                         // TextFormField(
                         //   decoration: const InputDecoration(
@@ -63,18 +68,27 @@ class _BillingFormState extends State<BillingForm> {
                             hintText: 'State',
                             labelText: 'State',
                           ),
+                           onChanged: (value) {
+                            context.read<VenderAddBillingProvider>().updateSate(value);
+                          },
                         ),
                         TextFormField(
                           decoration: const InputDecoration(
                             hintText: 'City',
                             labelText: 'City',
                           ),
+                           onChanged: (value) {
+                            context.read<VenderAddBillingProvider>().updateCity(value);
+                          },
                         ),
                         TextFormField(
                           decoration: const InputDecoration(
                             hintText: 'Country ',
                             labelText: 'Country ',
                           ),
+                           onChanged: (value) {
+                            context.read<VenderAddBillingProvider>().updateCountry(value);
+                          },
                         ),
                         TextFormField(
                           keyboardType: TextInputType.phone,
@@ -82,6 +96,9 @@ class _BillingFormState extends State<BillingForm> {
                             hintText: 'Zip Code',
                             labelText: 'Zip Code',
                           ),
+                           onChanged: (value) {
+                            context.read<VenderAddBillingProvider>().updateZipCode(value);
+                          },
                         ),
                       ],
                     ),

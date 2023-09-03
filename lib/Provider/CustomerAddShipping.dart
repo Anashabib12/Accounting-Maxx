@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class VenderAddBillingProvider extends ChangeNotifier {
-  final vendorAddBillingObj = {};
+class CustomerAddShippingProvider extends ChangeNotifier {
+  final CustomerAddShippingObj = {};
   // set
   String _Address = '';
   String _State = '';
@@ -41,13 +41,13 @@ class VenderAddBillingProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void vendorAddBillingSave() {
-    vendorAddBillingObj['address'] = _Address;
-    vendorAddBillingObj['Sate'] = _State;
-    vendorAddBillingObj['city'] = _City;
-    vendorAddBillingObj['Country'] = _Country;
-    vendorAddBillingObj['ZipCode'] = _ZipCode;
+  void CustomerAddShippingSave() {
+    CustomerAddShippingObj['address'] = _Address;
+    CustomerAddShippingObj['Sate'] = _State;
+    CustomerAddShippingObj['city'] = _City;
+    CustomerAddShippingObj['Country'] = _Country;
+    CustomerAddShippingObj['ZipCode'] = _ZipCode;
     
-    print(vendorAddBillingObj);
+    print(CustomerAddShippingObj);
   }
 }

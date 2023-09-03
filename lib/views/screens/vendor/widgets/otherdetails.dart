@@ -36,13 +36,16 @@ class _OtherDetailsState extends State<OtherDetails> {
     'Due end of next month',
   ];
 
-  String selectedCurrency = 'USD- United States Dollar'; // Default selected currency
-  String selectedPaymentTerm = 'Due on Receipt'; // Default selected payment term
+  String selectedCurrency =
+      'USD- United States Dollar'; // Default selected currency
+  String selectedPaymentTerm =
+      'Due on Receipt'; // Default selected payment term
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: AlignmentDirectional.centerStart, // Align content to the left side
+      alignment:
+          AlignmentDirectional.centerStart, // Align content to the left side
       child: Padding(
         padding: EdgeInsets.symmetric(
           vertical: MediaQuery.of(context).size.height * 0.03,
@@ -64,14 +67,12 @@ class _OtherDetailsState extends State<OtherDetails> {
             DropdownButtonFormField<String>(
               value: selectedCurrency,
               onChanged: (newValue) {
+                  context.read<VenderProvider>().updateCurrencies(newValue!);
                 setState(() {
                   selectedCurrency = newValue!;
-                
-                           context
-                                .read<VenderProvider>()
-                                .updateCurrencies(newValue as List<String>);
-                      
-                });
+
+                }
+                );
               },
               items: currencies.map<DropdownMenuItem<String>>((currency) {
                 return DropdownMenuItem<String>(
@@ -94,9 +95,7 @@ class _OtherDetailsState extends State<OtherDetails> {
                 contentPadding: EdgeInsets.symmetric(horizontal: 12),
               ),
               onChanged: (value) {
-                 context
-                                .read<VenderProvider>()
-                                .updateAmount(value);
+                context.read<VenderProvider>().updateAmount(value);
               },
             ),
             const SizedBox(height: 11),
@@ -106,9 +105,7 @@ class _OtherDetailsState extends State<OtherDetails> {
               onChanged: (newValue) {
                 setState(() {
                   selectedPaymentTerm = newValue!;
-                  context
-                                .read<VenderProvider>()
-                                .updatePaymentTerms(newValue as List<String>);
+                  context.read<VenderProvider>().updatePaymentTerms(newValue);
                 });
               },
               items: PaymentTerms.map<DropdownMenuItem<String>>((PaymentTerms) {
@@ -122,7 +119,7 @@ class _OtherDetailsState extends State<OtherDetails> {
                 labelText: 'Payment Terms',
                 contentPadding: EdgeInsets.symmetric(horizontal: 12),
               ),
-            ),// Add more widgets here if needed.
+            ), // Add more widgets here if needed.
           ],
         ),
       ),

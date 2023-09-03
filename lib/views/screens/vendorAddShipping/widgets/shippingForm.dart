@@ -1,4 +1,6 @@
+import 'package:acounting_max/Provider/VendorAddShipping.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ShippingForm extends StatefulWidget {
   const ShippingForm({super.key});
@@ -48,6 +50,11 @@ class _ShippingFormState extends State<ShippingForm> {
                             hintText: 'Address',
                             labelText: 'Address',
                           ),
+                          onChanged: (value) {
+                            context
+                              .read<VenderAddShippingProvider>()
+                              .updateAddress(value);
+                          },
                         ),
                         // TextFormField(
                         //   decoration: const InputDecoration(
@@ -60,18 +67,30 @@ class _ShippingFormState extends State<ShippingForm> {
                             hintText: 'State',
                             labelText: 'State',
                           ),
+                          onChanged: (value) {
+                            context
+                              .read<VenderAddShippingProvider>().updateSate(value);
+                          },
                         ),
                         TextFormField(
                           decoration: const InputDecoration(
                             hintText: 'City',
                             labelText: 'City',
                           ),
+                          onChanged: (value) {
+                            context
+                              .read<VenderAddShippingProvider>().updateCity(value);
+                          },
                         ),
                         TextFormField(
                           decoration: const InputDecoration(
                             hintText: 'Country ',
                             labelText: 'Country ',
                           ),
+                          onChanged: (value) {
+                            context
+                              .read<VenderAddShippingProvider>().updateCountry(value);
+                          },
                         ),
                         TextFormField(
                           keyboardType: TextInputType.phone,
@@ -79,6 +98,10 @@ class _ShippingFormState extends State<ShippingForm> {
                             hintText: 'Zip Code',
                             labelText: 'Zip Code',
                           ),
+                          onChanged: (value) {
+                            context
+                              .read<VenderAddShippingProvider>().updateZipCode(value);
+                          },
                         ),
                       ],
                     ),

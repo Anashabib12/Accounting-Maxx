@@ -2,6 +2,7 @@
 // import 'package:acounting_max/views/screens/Shippingpage/shippingscreen.dart';
 // import 'package:acounting_max/views/screens/contactpage/contactscreen.dart';
 import 'package:acounting_max/views/screens/customerPage/Widgets/APPbar.dart';
+import 'package:acounting_max/views/screens/customerPage/Widgets/otherDetails.dart';
 // import 'package:acounting_max/views/screens/customerPage/Widgets/CompanyButton.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +34,7 @@ class _CustomerScreenWidgetState extends State<CustomerScreenWidget> {
           children: [
           const CustomerCompany(), 
           const CompanyForm(),
+          // const OtherDetails(),
           
           //  CompanyButton(
           //       name: 'Add Billing Address',

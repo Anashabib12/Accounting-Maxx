@@ -1,4 +1,6 @@
+import 'package:acounting_max/Provider/CustomerContactPerson.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class contactform extends StatelessWidget {
   const contactform({Key? key});
@@ -13,6 +15,9 @@ class contactform extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'First Name',
             ),
+            onChanged: (value) {
+              context.read<CustomerContactPersonProvider>().updateFirstName(value);
+            },
             validator: (value) {
               if (value!.isEmpty) {
                 return 'This field is required.';
@@ -24,6 +29,9 @@ class contactform extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Last Name',
             ),
+             onChanged: (value) {
+              context.read<CustomerContactPersonProvider>().updateLastName(value);
+            },
             validator: (value) {
               if (value!.isEmpty) {
                 return 'This field is required.';
@@ -35,6 +43,9 @@ class contactform extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Email',
             ),
+             onChanged: (value) {
+              context.read<CustomerContactPersonProvider>().updateEmail(value);
+            },
             validator: (value) {
               if (value!.isEmpty) {
                 return 'This field is required.';
@@ -46,6 +57,9 @@ class contactform extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: "Contact phone",
             ),
+             onChanged: (value) {
+              context.read<CustomerContactPersonProvider>().updateContactPhone(value);
+            },
             validator: (value) {
               if (value!.isEmpty) {
                 return 'This field is required.';
@@ -72,8 +86,8 @@ class contactform extends StatelessWidget {
               }
               return null;
             },
-            onChanged: (value) {
-              // Handle the selected value if needed
+             onChanged: (value) {
+              context.read<CustomerContactPersonProvider>().updateJoobRole(value!);
             },
           ),
         ],

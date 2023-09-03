@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class VenderProvider extends ChangeNotifier {
-  final vendorObj = {};
+class CustomerForm extends ChangeNotifier {
+  final CustomerObj = {};
   // set
   String _selectedVendorCategory = 'Retailer';
   String _selectedVendorStatus = 'individual';
@@ -95,21 +95,21 @@ class VenderProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void vendor_Obj_Save() {
-    vendorObj['selectedVendorCategory'] = selectedVendorCategory;
-    vendorObj['selectedVendorStatus'] = selectedVendorStatus;
-    vendorObj['CompanyName'] = Company;
-    vendorObj['Email'] = Email;
-    vendorObj['Main_Phone'] = Main_Phone;
-    vendorObj['Work_Phone'] = Work_Phone;
-    vendorObj['FirstName'] = FirstName;
-    vendorObj['LastName'] = LastName;
-    vendorObj['MiddleName'] = MiddleName;
-    vendorObj['PaymentTerms'] = PaymentTerms;
-    vendorObj['currencies'] = currencies;
-    vendorObj['Ammount'] = Ammount;
+  void Customer_Obj_Save() {
+    CustomerObj['selectedVendorCategory'] = selectedVendorCategory;
+    CustomerObj['selectedVendorStatus'] = selectedVendorStatus;
+    CustomerObj['CompanyName'] = Company;
+    CustomerObj['Email'] = Email;
+    CustomerObj['Main_Phone'] = Main_Phone;
+    CustomerObj['Work_Phone'] = Work_Phone;
+    CustomerObj['FirstName'] = FirstName;
+    CustomerObj['LastName'] = LastName;
+    CustomerObj['MiddleName'] = MiddleName;
+    CustomerObj['PaymentTerms'] = PaymentTerms;
+    CustomerObj['currencies'] = currencies;
+    CustomerObj['Ammount'] = Ammount;
 
-    print(vendorObj);
+    print(CustomerObj);
   }
 
   //  myObj.clear();
