@@ -43,6 +43,8 @@ dependencies:
   app_install_date: ^0.1.2
   intl: ^0.18.1
   provider: ^6.0.5
+  graphql: ^5.2.0-beta.6
+  graphql_flutter: ^5.2.0-beta.5
 
 dev_dependencies:
   flutter_test:

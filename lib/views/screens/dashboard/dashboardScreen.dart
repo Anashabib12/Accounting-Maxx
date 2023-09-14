@@ -1,8 +1,13 @@
+import 'package:acounting_max/views/screens/customerListscreen/widget/customerList.dart';
 import 'package:acounting_max/views/screens/customerPage/customer-screen.dart';
 import 'package:acounting_max/views/screens/dashboard/widgets/DBAppBar.dart';
 import 'package:acounting_max/views/screens/dashboard/widgets/body.dart';
 import 'package:acounting_max/views/screens/item1/itemScreeen.dart';
 import 'package:acounting_max/views/screens/vendor/vendorScreen.dart';
+// import 'package:acounting_max/views/screens/www/waiz.dart';
+// import 'package:acounting_max/views/screens/customerListscreen/customerScreen.dart';
+import 'package:acounting_max/views/screens/customerListscreen/widget/customerList.dart';
+import 'package:acounting_max/views/screens/ItemListScreen/ItemList.dart';
 import 'package:flutter/material.dart';
 
 class dashBoard extends StatefulWidget {
@@ -24,6 +29,22 @@ class _dashBoardState extends State<dashBoard> {
         // child: BillingForm()
         child: Column(
           children: [
+            dashboardBody(
+                name: 'Item List',
+                dashboardPressFunction: () => {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const ItemList()))
+                    }),
+            dashboardBody(
+                name: 'Customer List',
+                dashboardPressFunction: () => {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const CustomerList()))
+                    }),
             dashboardBody(
                 name: 'New Vendor',
                 dashboardPressFunction: () => {

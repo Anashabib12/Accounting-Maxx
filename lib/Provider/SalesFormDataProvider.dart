@@ -86,6 +86,7 @@ class SalesDataProvider extends ChangeNotifier {
     _DiscountPrice30 = value;
     notifyListeners();
   }
+
   // row4
   void updateAddQty4(String value) {
     _AddQty4 = value;
@@ -96,6 +97,7 @@ class SalesDataProvider extends ChangeNotifier {
     _DiscountPrice4 = value;
     notifyListeners();
   }
+
   // row3
   void updateAddQty5(String value) {
     _AddQty5 = value;
@@ -108,7 +110,8 @@ class SalesDataProvider extends ChangeNotifier {
   }
 
   //validation
-  String? validateItemName(String salesDescription, int salesPrise,String BasePrice, String AddQty10, String DiscountPrice10) {
+  String? validateItemName(String salesDescription, int salesPrise,
+      String BasePrice, String AddQty10, String DiscountPrice10) {
     if (salesDescription.isEmpty) {
       return 'Please enter an item name';
     } else if (salesPrise.isNaN) {
@@ -124,9 +127,7 @@ class SalesDataProvider extends ChangeNotifier {
     }
   }
 
-  final Sales_save = {
-    
-  };
+  final Sales_save = {};
 
   void SalesSave() {
     if (validateItemName(salesDescription, salesPrise, BasePrice, AddQty10,
@@ -136,7 +137,7 @@ class SalesDataProvider extends ChangeNotifier {
       Sales_save["SalesPrice"] = salesPrise;
       Sales_save['Base Price'] = BasePrice;
       // row1
-      Sales_save['QTY 1'] = AddQty10;//Add_Qty:_min_10
+      Sales_save['QTY 1'] = AddQty10; //Add_Qty:_min_10
       Sales_save['Price 1'] = DiscountPrice10;
       // row2
       Sales_save['QTY 2'] = AddQty20;

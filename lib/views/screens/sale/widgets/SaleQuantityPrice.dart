@@ -11,7 +11,18 @@ class SaleQtyPrice extends StatefulWidget {
 }
 
 class _SaleQtyPriceState extends State<SaleQtyPrice> {
-   String _selectedJobeRole = 'Eid';
+  // void text() {
+  //   TextFormField(
+  //     decoration: InputDecoration(
+  //       border: OutlineInputBorder(),
+  //       hintText: 'Quantity 1', //Add Qty: min-10
+  //       labelText: 'Quantity 1',
+  //       // labelText: 'Income Account',
+  //     ),
+  //   );
+  // }
+
+  String _selectedJobeRole = 'Eid';
   //  String _selectedJobeRole = 'Store Manager';
   @override
   Widget build(BuildContext context) {
@@ -36,64 +47,67 @@ class _SaleQtyPriceState extends State<SaleQtyPrice> {
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(top: 20),
-                  width: MediaQuery.of(context).size.width*0.4,
-                  //  width: MediaQuery.of(context).size.width * 0.9,
-                  // child: TextFormField(
-                  //     decoration:const InputDecoration(
-                  //   // border: InputBorder(),
-                  //   hintText: 'Base',
-                  //   // labelText: 'Income Account',
-                  // )),
-                 child:  DropdownButtonFormField(
-              value: _selectedJobeRole,
-              onChanged: (newValue){
+                    margin: const EdgeInsets.only(top: 20),
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    //  width: MediaQuery.of(context).size.width * 0.9,
+                    // child: TextFormField(
+                    //     decoration:const InputDecoration(
+                    //   // border: InputBorder(),
+                    //   hintText: 'Base',
+                    //   // labelText: 'Income Account',
+                    // )),
+                    child: DropdownButtonFormField(
+                      value: _selectedJobeRole,
+                      onChanged: (newValue) {
 // onChanged: (value) {
-                // context.read<VenderContactPersonProvider>().updateJoobRole(newValue!);
-              // },                
-                setState(() {
-                  _selectedJobeRole = newValue!;
-                });
-              },
-              items: const [
-                DropdownMenuItem(
-                  value: 'Eid',
-                  child: Text('Eid'),
-                ),
-                DropdownMenuItem(
-                  value: 'Christmas',
-                  child: Text('Christmas'),
-                ),
-                DropdownMenuItem(
-                  value: 'New Year',
-                  child: Text('New Year'),
-                ),
-                DropdownMenuItem(
-                  value: 'Eid ul fitr',
-                  child: Text('Eid ul fitr'),
-                ),
-                DropdownMenuItem(
-                  value: '14 Aug',
-                  child: Text('14 Aug'),
-                ),
-              ],
-              decoration: const InputDecoration(
-                hintText: 'Price Level Name',
-                labelText: 'Price Level Name',
-              ),
-            )
-                  // child: TextFormField(
-                  //     decoration:const InputDecoration(
-                  //   hintText:"Base Price",
-                  //     ),
-                  //   // style: TextStyle(
-                  //   //   fontSize: 18, // Set the font size here
-                  //   // ),
-                  //     onChanged: (value) {
-                  //       context.read<SalesDataProvider>().updateBasePrice(value);
-                  //     },
-                  // ),
-                ),
+                        // context.read<VenderContactPersonProvider>().updateJoobRole(newValue!);
+                        // },
+                        setState(() {
+                          _selectedJobeRole = newValue!;
+                          context
+                              .read<SalesDataProvider>()
+                              .updateBasePrice(newValue);
+                        });
+                      },
+                      items: const [
+                        DropdownMenuItem(
+                          value: 'Eid',
+                          child: Text('Eid'),
+                        ),
+                        DropdownMenuItem(
+                          value: 'Christmas',
+                          child: Text('Christmas'),
+                        ),
+                        DropdownMenuItem(
+                          value: 'New Year',
+                          child: Text('New Year'),
+                        ),
+                        DropdownMenuItem(
+                          value: 'Eid ul fitr',
+                          child: Text('Eid ul fitr'),
+                        ),
+                        DropdownMenuItem(
+                          value: '14 Aug',
+                          child: Text('14 Aug'),
+                        ),
+                      ],
+                      decoration: const InputDecoration(
+                        hintText: 'Price Level Name',
+                        labelText: 'Price Level Name',
+                      ),
+                    )
+                    // child: TextFormField(
+                    //     decoration:const InputDecoration(
+                    //   hintText:"Base Price",
+                    //     ),
+                    //   // style: TextStyle(
+                    //   //   fontSize: 18, // Set the font size here
+                    //   // ),
+                    //     onChanged: (value) {
+                    //       context.read<SalesDataProvider>().updateBasePrice(value);
+                    //     },
+                    // ),
+                    ),
               ],
             ),
           ),
@@ -108,36 +122,38 @@ class _SaleQtyPriceState extends State<SaleQtyPrice> {
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: TextFormField(
                     keyboardType: TextInputType.phone,
-                      inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
-                        ],
-                      decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Quantity 1',//Add Qty: min-10
-                    // labelText: 'Income Account',
-                  ),
-                  onChanged: (value) {
-                        context.read<SalesDataProvider>().updateAddQty10(value);
-                  },
-                  
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Quantity 1', //Add Qty: min-10
+                      labelText: 'Quantity 1',
+                      // labelText: 'Income Account',
+                    ),
+                    onChanged: (value) {
+                      context.read<SalesDataProvider>().updateAddQty10(value);
+                    },
                   ),
                 ),
                 Container(
                   // margin: EdgeInsets.only(top: 20),
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: TextFormField(
-                          keyboardType: TextInputType.phone,
+                    keyboardType: TextInputType.phone,
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
                     ],
-                      decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Price',
-                    // labelText: 'Income Account',
-                  ),
-                  onChanged: (value){
-                        context.read<SalesDataProvider>().updateDiscountPrice10(value);
-                  },
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Price',
+                      // labelText: 'Income Account',
+                    ),
+                    onChanged: (value) {
+                      context
+                          .read<SalesDataProvider>()
+                          .updateDiscountPrice10(value);
+                    },
                   ),
                 ),
               ],
@@ -155,36 +171,39 @@ class _SaleQtyPriceState extends State<SaleQtyPrice> {
                   // margin: EdgeInsets.only(top: 20),
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: TextFormField(
-                          keyboardType: TextInputType.phone,
+                    keyboardType: TextInputType.phone,
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
                     ],
-                      decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Quantity 2',//Add Qty: min-20
-                    // labelText: 'Income Account',
-                  ),
-                  onChanged: (value){
-                        context.read<SalesDataProvider>().updateAddQty20(value);
-                  },
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Quantity 2', //Add Qty: min-20
+                      labelText: 'Quantity 2',
+                      // labelText: 'Income Account',
+                    ),
+                    onChanged: (value) {
+                      context.read<SalesDataProvider>().updateAddQty20(value);
+                    },
                   ),
                 ),
                 Container(
                   // margin: EdgeInsets.only(top: 20),
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: TextFormField(
-                            keyboardType: TextInputType.phone,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
-                      ],
-                      decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Price',
-                    // labelText: 'Income Account',
-                  ),
-                  onChanged: (value){
-                        context.read<SalesDataProvider>().updateDiscountPrice20(value);
-                  },
+                    keyboardType: TextInputType.phone,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Price',
+                      // labelText: 'Income Account',
+                    ),
+                    onChanged: (value) {
+                      context
+                          .read<SalesDataProvider>()
+                          .updateDiscountPrice20(value);
+                    },
                   ),
                 ),
               ],
@@ -202,36 +221,39 @@ class _SaleQtyPriceState extends State<SaleQtyPrice> {
                   // margin: EdgeInsets.only(top: 20),
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: TextFormField(
-                            keyboardType: TextInputType.phone,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
-                      ],
-                      decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Quantity 3',//Add Qty: min-30
-                    // labelText: 'Income Account',
-                  ),
-                  onChanged: (value){
-                        context.read<SalesDataProvider>().updateAddQty30(value);
-                  },
+                    keyboardType: TextInputType.phone,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Quantity 3', //Add Qty: min-30
+                      labelText: 'Quantity 3',
+                      // labelText: 'Income Account',
+                    ),
+                    onChanged: (value) {
+                      context.read<SalesDataProvider>().updateAddQty30(value);
+                    },
                   ),
                 ),
                 Container(
                   // margin: EdgeInsets.only(top: 20),
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: TextFormField(
-                            keyboardType: TextInputType.phone,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
-                      ],
-                      decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Price',
-                    // labelText: 'Income Account',
-                  ),
-                  onChanged: (value){
-                        context.read<SalesDataProvider>().updateDiscountPrice30(value);
-                  },
+                    keyboardType: TextInputType.phone,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Price',
+                      // labelText: 'Income Account',
+                    ),
+                    onChanged: (value) {
+                      context
+                          .read<SalesDataProvider>()
+                          .updateDiscountPrice30(value);
+                    },
                   ),
                 ),
               ],
@@ -247,36 +269,37 @@ class _SaleQtyPriceState extends State<SaleQtyPrice> {
                   // margin: EdgeInsets.only(top: 20),
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: TextFormField(
-                            keyboardType: TextInputType.phone,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
-                      ],
-                      decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Quantity 4',//Add Qty: min-30
-                    // labelText: 'Income Account',
-                  ),
-                  onChanged: (value){
-                        context.read<SalesDataProvider>().updateAddQty4(value);
-                  },
+                    keyboardType: TextInputType.phone,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Quantity 4', //Add Qty: min-30
+                      labelText: 'Quantity 4',
+                      // labelText: 'Income Account',
+                    ),
+                    onChanged: (value) {
+                      context.read<SalesDataProvider>().updateAddQty4(value);
+                    },
                   ),
                 ),
                 Container(
                   // margin: EdgeInsets.only(top: 20),
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: TextFormField(
-                            keyboardType: TextInputType.phone,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
-                      ],
-                      decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Price',
-                    // labelText: 'Income Account',
-                  ),
-                  onChanged: (value){
-                        context.read<SalesDataProvider>().updatePrice4(value);
-                  },
+                    keyboardType: TextInputType.phone,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Price',
+                      // labelText: 'Income Account',
+                    ),
+                    onChanged: (value) {
+                      context.read<SalesDataProvider>().updatePrice4(value);
+                    },
                   ),
                 ),
               ],
@@ -292,82 +315,80 @@ class _SaleQtyPriceState extends State<SaleQtyPrice> {
                   // margin: EdgeInsets.only(top: 20),
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: TextFormField(
-                            keyboardType: TextInputType.phone,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
-                      ],
-                      decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Quantity 5',//Add Qty: min-30
-                    // labelText: 'Income Account',
-                  ),
-                  onChanged: (value){
-                        context.read<SalesDataProvider>().updateAddQty5(value);
-                  },
+                    keyboardType: TextInputType.phone,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Quantity 5', //Add Qty: min-30
+                      labelText: 'Quantity 5',
+                      // labelText: 'Income Account',
+                    ),
+                    onChanged: (value) {
+                      context.read<SalesDataProvider>().updateAddQty5(value);
+                    },
                   ),
                 ),
                 Container(
                   // margin: EdgeInsets.only(top: 20),
                   width: MediaQuery.of(context).size.width * 0.4,
                   child: TextFormField(
-                            keyboardType: TextInputType.phone,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
-                      ],
-                      decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Price',
-                    // labelText: 'Income Account',
-                  ),
-                  onChanged: (value){
-                        context.read<SalesDataProvider>().updatePrice5(value);
-                  },
+                    keyboardType: TextInputType.phone,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Price',
+                      // labelText: 'Income Account',
+                    ),
+                    onChanged: (value) {
+                      context.read<SalesDataProvider>().updatePrice5(value);
+                    },
                   ),
                 ),
               ],
             ),
           ),
-
-          
         ],
       ),
     );
   }
 }
 
-
 //input 1
 
-          // Container(
-          //   child: Row(
-          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+// Container(
+//   child: Row(
+//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-          //     children: [
-          //       Container(
-          //     // margin: EdgeInsets.only(top: 20),
-          //     // width: MediaQuery.of(context).size.width*0.9,
-          //     child: TextFormField(
-          //       decoration: InputDecoration(
-          //         border: OutlineInputBorder(),
-          //          hintText: 'Income Account',
-          //             labelText: 'Income Account',
-          //         )
+//     children: [
+//       Container(
+//     // margin: EdgeInsets.only(top: 20),
+//     // width: MediaQuery.of(context).size.width*0.9,
+//     child: TextFormField(
+//       decoration: InputDecoration(
+//         border: OutlineInputBorder(),
+//          hintText: 'Income Account',
+//             labelText: 'Income Account',
+//         )
 
-          //     ),
-          //   ),
-          //   Container(
-          //     // margin: EdgeInsets.only(top: 20),
-          //     // width: MediaQuery.of(context).size.width*0.9,
-          //     child: TextFormField(
-          //       decoration: InputDecoration(
-          //         border: OutlineInputBorder(),
-          //          hintText: 'Income Account',
-          //             labelText: 'Income Account',
-          //         )
+//     ),
+//   ),
+//   Container(
+//     // margin: EdgeInsets.only(top: 20),
+//     // width: MediaQuery.of(context).size.width*0.9,
+//     child: TextFormField(
+//       decoration: InputDecoration(
+//         border: OutlineInputBorder(),
+//          hintText: 'Income Account',
+//             labelText: 'Income Account',
+//         )
 
-          //     ),
-          //   ),
+//     ),
+//   ),
 
-          //     ],
-          //   ),
-          // )
+//     ],
+//   ),
+// )
