@@ -6,7 +6,8 @@ import 'package:acounting_max/views/screens/item1/itemScreeen.dart';
 import 'package:acounting_max/views/screens/vendor/vendorScreen.dart';
 // import 'package:acounting_max/views/screens/www/waiz.dart';
 // import 'package:acounting_max/views/screens/customerListscreen/customerScreen.dart';
-import 'package:acounting_max/views/screens/customerListscreen/widget/customerList.dart';
+// import 'package:acounting_max/views/screens/customerListscreen/widget/customerList.dart';
+import 'package:acounting_max/views/screens/Vendor_List/VendorListScreen.dart';
 import 'package:acounting_max/views/screens/ItemListScreen/ItemList.dart';
 import 'package:flutter/material.dart';
 
@@ -44,6 +45,14 @@ class _dashBoardState extends State<dashBoard> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => const CustomerList()))
+                    }),
+            dashboardBody(
+                name: 'Vendor List',
+                dashboardPressFunction: () => {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const VendorList()))
                     }),
             dashboardBody(
                 name: 'New Vendor',
