@@ -1,6 +1,8 @@
 import 'package:acounting_max/views/screens/item2/widgets/accountFeild.dart';
 import 'package:acounting_max/views/screens/item2/widgets/item2AppBar.dart';
+import 'package:acounting_max/Provider/item2FormDataProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class itemScreen2 extends StatefulWidget {
   const itemScreen2({super.key});
@@ -13,17 +15,15 @@ class _itemScreen2State extends State<itemScreen2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    appBar: PreferredSize(
-            preferredSize: Size.fromHeight(65),
-            child: const Item2AppBar()),
-             body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(child: AccountField(),)
-            ],
-          )
-          )
-
-    );
+        appBar: PreferredSize(
+            preferredSize: Size.fromHeight(65), child: const Item2AppBar()),
+        body: SingleChildScrollView(
+            child: Column(
+          children: [
+            Container(
+              child: AccountField(),
+            )
+          ],
+        )));
   }
 }

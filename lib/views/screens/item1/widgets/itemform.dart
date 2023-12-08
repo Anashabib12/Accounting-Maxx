@@ -1,69 +1,93 @@
-import 'package:acounting_max/Provider/ItemFormDataProvider.dart';
+import 'package:acounting_max/models/model.dart';
+import 'package:acounting_max/models/modelDB.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:acounting_max/Provider/ItemFormDataProvider.dart';
 
-class itemFormWidget extends StatefulWidget {
-  const itemFormWidget({super.key});
+// import 'package:acounting_max/services/isar_service.dart'; // Import the IsarService
+
+class ItemFormWidget extends StatefulWidget {
+  const ItemFormWidget({Key? key}) : super(key: key);
 
   @override
-  State<itemFormWidget> createState() => _itemFormWidgetState();
+  _ItemFormWidgetState createState() => _ItemFormWidgetState();
 }
 
-class _itemFormWidgetState extends State<itemFormWidget> {
-  final TextEditingController ItemName = TextEditingController();
-  final TextEditingController ItemCode = TextEditingController();
-  final TextEditingController PurchasePrice = TextEditingController();
+class _ItemFormWidgetState extends State<ItemFormWidget> {
+  final TextEditingController itemNameController = TextEditingController();
+  final TextEditingController itemCodeController = TextEditingController();
+  final TextEditingController purchasePriceController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  //  late String  itemName;
-  // String? _validateItemName(String? value) {
-  //   if (value == null || value.isEmpty) {
-  //     return 'Name Required';
+
+  @override
+  void initState() {
+    super.initState();
+    // Load the form data when the widget initializes
+    context.read<ItemFormProvider>().loadFormData(IsarService());
+  }
+
+  void saveFormData() {
+    // Save the form data using the provider
+    context.read<ItemFormProvider>().saveItemToIsar(IsarService());
+
+    // Save the form data to Isar
+    final databaseService = Provider.of<IsarService>(context, listen: false);
+    final newItem = Item(
+      itemName: itemNameController.text,
+      itemCode: itemCodeController.text,
+      purchasePrice: purchasePriceController.text,
+    );
+    databaseService.saveItem(newItem);
+  }
+  // void loadFormData() async {
+  //   final databaseService = Provider.of<IsarService>(context, listen: false);
+  //   // final databaseService = context.read<IsarService>();
+  //   final storedData = await databaseService.getAllItems();
+
+  //   if (storedData.isNotEmpty) {
+  //     setState(() {
+  //       itemNameController.text = storedData[0].itemName;
+  //       itemCodeController.text = storedData[0].itemCode;
+  //       purchasePriceController.text = storedData[0].purchasePrice;
+  //     });
   //   }
-  //   return null;
   // }
+
+  // void saveFormData() async {
+  //   final databaseService = Provider.of<IsarService>(context, listen: false);
+  //   final newItem = Item(
+  //     itemName: itemNameController.text,
+  //     itemCode: itemCodeController.text,
+  //     purchasePrice: purchasePriceController.text,
+  //     // timestamp: DateTime.now(),
+  //   );
+
+  //   await databaseService.saveItem(newItem);
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 25.0, right: 25, top: 20.0),
       child: Form(
         key: _formKey,
-        // autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Column(
-          // crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            // const padding(
-            //  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-            // )
-            
             TextFormField(
-              //  validator: _validateItemName,
-              controller: ItemName,
+              controller: itemNameController,
               decoration: const InputDecoration(
-                // icon: const Icon(Icons.person),
                 hintText: 'Item Name',
                 labelText: 'Item Name',
               ),
               onChanged: (value) {
-                //  itemName = value;
                 context.read<ItemFormProvider>().updateItemName(value);
-                // else{
-                  // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text("item name")));
-                // }
+// You can remove this line as it is not necessary with Isar
               },
-              // ? context.watch<ItemFormProvider>().itemNameError
-              // : null, // Set to null when there's no error
-              // validator: (value) {
-              //   if (value == null || value.isEmpty) {
-              //     return 'Please enter some text';
-              //   }
-              //   return null;
-              // },
             ),
             TextFormField(
-              controller: ItemCode,
+              controller: itemCodeController,
               decoration: const InputDecoration(
-                // icon: const Icon(Icons.code_off_rounded),
                 hintText: 'Item Code',
                 labelText: 'Item Code',
               ),
@@ -72,325 +96,36 @@ class _itemFormWidgetState extends State<itemFormWidget> {
               },
             ),
             TextFormField(
-              controller: PurchasePrice,
-              keyboardType: TextInputType.phone,
+              controller: purchasePriceController,
+              keyboardType: TextInputType.number,
               inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
+                FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
               ],
               decoration: const InputDecoration(
-                // icon: const Icon(Icons.phone),
-                hintText: ' Purchase Price',
+                hintText: 'Purchase Price',
                 labelText: 'Purchase Price',
               ),
               onChanged: (value) {
-                context.read<ItemFormProvider>().updatePurchasePrice(value);//int.parse(value)
+                context.read<ItemFormProvider>().updatePurchasePrice(value);
               },
             ),
-            //  Container(
-            //     padding: const EdgeInsets.only(left: 150.0, top: 40.0),
-            //     ),
+            ElevatedButton(
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  // Save the form data using the provider
+                  context.read<ItemFormProvider>().saveItemToIsar(IsarService());
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Item added to database'),
+                    ),
+                  );
+                }
+              },
+              child: Text('Add Item'),
+            ),
           ],
         ),
       ),
     );
   }
-
-  // void clear() {
-  //   // Clean up the TextEditingController when the widget is disposed.
-  //   ItemName.clear();
-
-  //   ItemCode.clear();
-  //   PurchasePrice.clear();
-  //   // textController1.dispose();
-  //   // textController2.dispose();
-  //   // textController3.dispose();
-  //   // textController4.dispose();
-  //   // textController5.dispose();
-  //   // textController6.dispose();
-  //   clear();
-  // }
 }
-
-// import 'package:acounting_max/Provider/ItemFormDataProvider.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
-// import 'package:provider/provider.dart';
-
-// // import 'item_form_provider.dart'; // Import the created provider
-// class itemFormWidget extends StatefulWidget {
-//   final itemFormWidget provider; // Pass the provider as a parameter
-
-//   const itemFormWidget({super.key, required this.provider});
-
-//   @override
-//   State<itemFormWidget> createState() => _itemFormWidgetState();
-// }
-
-// class _itemFormWidgetState extends State<itemFormWidget> {
-//   final _formKey = GlobalKey<FormState>();
-//   // ...
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       padding: const EdgeInsets.only(left: 25.0, right: 25, top: 20.0),
-//       child: Form(
-//         key: _formKey,
-//         child: Column(
-//           // ...
-//           children: <Widget>[
-//             TextFormField(
-//               decoration: const InputDecoration(
-//                 hintText: 'Item Name',
-//                 labelText: 'Item Name',
-//               ),
-//               onChanged: (value) {
-//                 context.read<ItemFormProvider>().updateItemName(value);
-//               },
-//             ),
-//             TextFormField(
-//               decoration: const InputDecoration(
-//                 hintText: 'Item Code',
-//                 labelText: 'Item Code',
-//               ),
-//               onChanged: (value) {
-//                 context.read<ItemFormProvider>().updateItemCode(value);
-//               },
-//             ),
-//             TextFormField(
-//               keyboardType: TextInputType.phone,
-//               inputFormatters: [
-//                 FilteringTextInputFormatter.digitsOnly,
-//               ],
-//               decoration: const InputDecoration(
-//                 // icon: const Icon(Icons.phone),
-//                 hintText: ' Purchase Price',
-//                 labelText: 'Purchase Price',
-//               ),
-//               onChanged: (value) {
-//                 context.read<ItemFormProvider>().updatePurchasePrice(int.parse(value));
-//               },
-//             ),
-//             // ...
-            
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
-// import 'package:provider/provider.dart';
-
-// class ItemFormData extends ChangeNotifier {
-//   String itemName = '';
-//   String itemCode = '';
-//   String purchasePrice = '';
-
-//   void updateItemName(String name) {
-//     itemName = name;
-//     notifyListeners();
-//   }
-
-//   void updateItemCode(String code) {
-//     itemCode = code;
-//     notifyListeners();
-//   }
-
-//   void updatePurchasePrice(String price) {
-//     purchasePrice = price;
-//     notifyListeners();
-//   }
-
-//   void clearFormData() {
-//     itemName = '';
-//     itemCode = '';
-//     purchasePrice = '';
-//     notifyListeners();
-//   }
-// }
-
-// class ItemFormDataProvider extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return ChangeNotifierProvider(
-//       create: (context) => ItemFormData(),
-//       child: _ItemFormDataProviderContent(),
-//     );
-//   }
-// }
-
-// class _ItemFormDataProviderContent extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     final formData = Provider.of<ItemFormData>(context);
-
-//     return itemFormWidget(formData: formData);
-//   } 
-// }
-
-// class itemFormWidget extends StatefulWidget {
-//   final ItemFormData formData;
-
-//   const itemFormWidget({required this.formData, Key? key}) : super(key: key);
-
-//   @override
-//   State<itemFormWidget> createState() => _itemFormWidgetState();
-// }
-
-// class _itemFormWidgetState extends State<itemFormWidget> {
-//   TextEditingController _textControllerinputItem = TextEditingController();
-//   TextEditingController _textControllerinputCode = TextEditingController();
-//   TextEditingController _textControllerinputPrice = TextEditingController();
-//   final _formKey = GlobalKey<FormState>();
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       padding: const EdgeInsets.only(left: 25.0, right: 25, top: 20.0),
-//       child: Form(
-//         key: _formKey,
-//         child: Column(
-//           children: <Widget>[
-//             TextFormField(
-//               controller: _textControllerinputItem,
-//               decoration: const InputDecoration(
-//                 hintText: 'Item Name',
-//                 labelText: 'Item Name',
-//               ),
-//               onChanged: (value) {
-//                 widget.formData.updateItemName(value);
-//               },
-//             ),
-//             TextFormField(
-//               controller: _textControllerinputCode,
-//               decoration: const InputDecoration(
-//                 hintText: 'Item Code',
-//                 labelText: 'Item Code',
-//               ),
-//               onChanged: (value) {
-//                 widget.formData.updateItemCode(value);
-//               },
-//             ),
-//             TextFormField(
-//               controller: _textControllerinputPrice,
-//               keyboardType: TextInputType.phone,
-//               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-//               decoration: const InputDecoration(
-//                 hintText: ' Purchase Price',
-//                 labelText: 'Purchase Price',
-//               ),
-//               onChanged: (value) {
-//                 widget.formData.updatePurchasePrice(value);
-//               },
-//             ),
-//             ElevatedButton(
-//               onPressed: () {
-//                 // Save button action
-//                 saveFormData(context, widget.formData);
-//                 _textControllerinputItem.clear();
-//                 _textControllerinputCode.clear();
-//                 _textControllerinputPrice.clear();
-//               },
-//               child: const Text('Save'),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-
-//   void saveFormData(BuildContext context, ItemFormData formData) {
-//     // Perform any desired actions with the form data
-//     // For example, you can access formData.itemName, formData.itemCode, etc.
-//     print(
-//         'Saving: ${formData.itemName}, ${formData.itemCode}, ${formData.purchasePrice}');
-
-//     // Clear form data after saving
-//     formData.clearFormData();
-//   }
-// }

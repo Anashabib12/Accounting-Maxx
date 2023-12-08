@@ -83,14 +83,14 @@ class _ContactPersonFormState extends State<ContactPersonForm> {
                 context.read<VenderContactPersonProvider>().updateContactPhone(value);
               },
             ),
-            DropdownButtonFormField(
+           DropdownButtonFormField(
               value: _selectedJobeRole,
               onChanged: (newValue){
 // onChanged: (value) {
-                context.read<VenderContactPersonProvider>().updateJoobRole(newValue!);
+                context.read<VenderContactPersonProvider>().updateJoobRole(newValue as String);
               // },                
                 setState(() {
-                  _selectedJobeRole = newValue!;
+                  _selectedJobeRole = newValue;
                 });
               },
               items: const [

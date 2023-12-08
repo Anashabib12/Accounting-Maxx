@@ -63,7 +63,7 @@ class _SaleQtyPriceState extends State<SaleQtyPrice> {
                         // context.read<VenderContactPersonProvider>().updateJoobRole(newValue!);
                         // },
                         setState(() {
-                          _selectedJobeRole = newValue!;
+                          _selectedJobeRole = newValue as String;
                           context
                               .read<SalesDataProvider>()
                               .updateBasePrice(newValue);

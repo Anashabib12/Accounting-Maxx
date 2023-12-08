@@ -11,20 +11,30 @@ import 'package:acounting_max/Provider/VendorAddShipping.dart';
 import 'package:acounting_max/Provider/VendorAddbillingProvider.dart';
 import 'package:acounting_max/Provider/VendorContactPerson.dart';
 import 'package:acounting_max/Provider/VendorProvider.dart';
+import 'package:acounting_max/models/modelDB.dart';
 import 'package:acounting_max/views/screens/dashboard/dashboardScreen.dart';
 // import 'package:acounting_max/views/screens/vendor/vendorScreen.dart';
 // import 'package:acounting_max/views/screens/item1/itemScreeen.dart';
 import 'package:flutter/material.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:isar/isar.dart';
 import 'package:provider/provider.dart';
-
 import 'Provider/item2FormDataProvider.dart';
+// import 'package:acounting_max/models/modelDB.dart';
 
-void main() async {
+Future<void> main() async {
+  // Initialize Isar
   WidgetsFlutterBinding.ensureInitialized();
-  await initHiveForFlutter();
+  final isar = await IsarService().openDB();
+
+  Provider.debugCheckInvalidValueType = null;
   runApp(MultiProvider(
     providers: [
+      ChangeNotifierProvider(create: (_) => ItemFormProvider()),
+
+      Provider<Isar>.value(value: isar),
+      Provider<IsarService>(create: (_) => IsarService()),
+
+      // Provider<DatabaseService>(create: (_) => DatabaseService()),
       //    ChangeNotifierProvider(create: (context) => Item2FormProvider()),
       // ChangeNotifierProvider(
       //   create: (context) {

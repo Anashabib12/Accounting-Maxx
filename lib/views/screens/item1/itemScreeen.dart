@@ -10,6 +10,9 @@ import 'package:acounting_max/views/screens/item1/widgets/uploadImg.dart';
 import 'package:acounting_max/views/screens/item2/itemScreen2.dart';
 import 'package:acounting_max/views/screens/item3/Itemscreen3.dart';
 import 'package:flutter/material.dart';
+import 'package:isar/isar.dart';
+import 'package:acounting_max/models/modelDB.dart';
+import 'package:provider/provider.dart';
 
 import '../itemInventory/itemInventoryScreen.dart';
 import '../sale/saleScreen.dart';
@@ -22,13 +25,21 @@ class itemScreenWidget extends StatefulWidget {
 }
 
 class _itemScreenWidgetState extends State<itemScreenWidget> {
+  // late IsarService isarService;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   // Access the IsarService provider
+  //   // isarService = Provider.of<IsarService>(context, listen: false);
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: PreferredSize(
             preferredSize: const Size.fromHeight(65),
-            child:  AppBarwidgets(
-            )), // this is the app bar
+            child: AppBarwidgets()), // this is the app bar
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -38,7 +49,7 @@ class _itemScreenWidgetState extends State<itemScreenWidget> {
                 child: const UloadImgWidget(),
               ),
               //this container is item form
-              const itemFormWidget(),
+              const ItemFormWidget(),
               // ItemFormProvider(), //this is for provider
               const ItemDropdown(),
               const itemRadioWidgets(),

@@ -1,4 +1,5 @@
 import 'package:acounting_max/Provider/ItemFormDataProvider.dart';
+import 'package:acounting_max/models/modelDB.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -25,10 +26,8 @@ class _AppBarwidgetsState extends State<AppBarwidgets> {
             tooltip: 'Comment Icon',
             onPressed: () {
               final formProvider = context.read<ItemFormProvider>();
-              if (formProvider.validateItemName(formProvider.itemName,
-                      formProvider.itemCode, formProvider.purchasePrice) ==
-                  null) {
-                formProvider.save();
+              if (formProvider.validateItemName() == null) {
+                formProvider.saveItemToIsar(IsarService());
                 ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("successfully save")));
               }
@@ -56,6 +55,65 @@ class _AppBarwidgetsState extends State<AppBarwidgets> {
         ]);
   }
 }
+
+// import 'package:acounting_max/Provider/ItemFormDataProvider.dart';
+// import 'package:flutter/material.dart';
+// import 'package:provider/provider.dart';
+
+// class AppBarwidgets extends StatefulWidget {
+//   const AppBarwidgets({super.key});
+
+//   @override
+//   State<AppBarwidgets> createState() => _AppBarwidgetsState();
+// }
+
+// class _AppBarwidgetsState extends State<AppBarwidgets> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return AppBar(
+
+//         // leading: Icon(Icons.arrow_back),
+//         title: const Text('  New Items'),
+//         // name: Text('My App'),
+//         backgroundColor: const Color(0xFF50C2C9),
+// // Change this color to customize the app bar background color
+//         actions: [
+//           IconButton(
+//             icon: const Icon(Icons.save),
+//             tooltip: 'Comment Icon',
+//             onPressed: () {
+//               final formProvider = context.read<ItemFormProvider>();
+//               if (formProvider.validateItemName(formProvider.itemName,
+//                       formProvider.itemCode, formProvider.purchasePrice) ==
+//                   null) {
+//                 formProvider.save();
+//                 ScaffoldMessenger.of(context).showSnackBar(
+//                     const SnackBar(content: Text("successfully save")));
+//               }
+//               // else if(formProvider.validateItemName(formProvider.itemCode) == null){
+
+//               // }
+//               else {
+//                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+//                     content: Text("Please fill all Mandatory fields")));
+//               }
+//             },
+//             // onPressed: () {
+//             //   context.read<ItemFormProvider>().save();
+//             //   //  context.read<ItemFormProvider>().save();
+//             //   // context.read<ItemFormProvider>().clearFields();
+//             // },
+//           ), //IconButton
+//           // Text(
+//           // "Save",
+//           // style: TextStyle(
+//           //     // fontSize: MediaQuery.of(context).size.width * 0.6,
+//           //     // fontWeight: FontWeight.bold,
+//           //     ),
+//           // ),
+//         ]);
+//   }
+// }
 
 
 
